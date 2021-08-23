@@ -1,6 +1,7 @@
 <template>
     <div>
         <container>
+            <img src="C:\Meu\TCC-fe\tcc-fe\src\assets\logo.png">
             <p>
                 Mama aqui o glub glub
             </p>
