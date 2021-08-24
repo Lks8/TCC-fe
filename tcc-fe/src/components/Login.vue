@@ -30,7 +30,7 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 .main {
-    margin-top: 100px;
+    margin-top: 200px;
     display: inline-flex;
     height: 500px;
 }
