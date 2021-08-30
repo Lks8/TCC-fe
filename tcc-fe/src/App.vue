@@ -1,17 +1,26 @@
 <template>
     <div>
-        <Login />
+        <div v-if="!isLogged"><Login  /></div>
+        <div v-else><Dashboard /></div>
     </div>
 </template>
 
 <script>
-import Login from "./components/Login.vue";
+import Login from "./pages/Login.vue";
+import Dashboard from "./pages/Dashboard.vue";
+
 
 export default {
     name: "App",
     components: {
         Login,
+        Dashboard,
     },
+    data: function() {
+        return {
+            isLogged: false,
+        }
+    }
 };
 </script>
 
@@ -22,7 +31,7 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
     background-color: #252829;
-    height: 937px;
+    height: 100vh;
     margin: 0;
 }
 

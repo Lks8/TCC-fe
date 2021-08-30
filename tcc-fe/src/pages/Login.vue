@@ -30,22 +30,22 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 .main {
-    margin-top: 200px;
+    margin-top: 12%;
     display: inline-flex;
     height: 500px;
 }
 
 .core {
-        width: 420px;
-    }
+    width: 410px;
+    
+}
 
 .logo {
     height: 110px;
     display: inline-block;
     background-color: #d2d3d4;
-    width: 420px;
+    width: 100%;
 }
-
 
 img {
     padding: 14px;
@@ -92,5 +92,33 @@ b-button {
 
 span {
     padding-left: 8px;
+}
+
+@media only screen and (max-width: 425px) {
+    .main {
+        width: 100%;
+        margin-top: 50px;
+    }
+    .core {
+        margin-left: 10px;
+        width: 92%;
+    }
+    
+    .logo {
+        width: 100%;
+    }
+
+    .login {
+        padding-left: 20px;
+        
+    }
+
+    input {
+        width: 85%;
+    }
+    
+    b-button {
+        width: 130px;
+    }
 }
 </style>
