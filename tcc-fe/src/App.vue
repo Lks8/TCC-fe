@@ -1,7 +1,9 @@
 <template>
     <div>
-        <div v-if="!isLogged"><Login  /></div>
-        <div v-else><Dashboard /></div>
+        <div ><Dashboard /></div>
+        <div ><Login  /></div>
+        <!-- <div v-if="!isLogged"><Login  /></div> -->
+        <!-- <div v-else><Dashboard /></div> -->
     </div>
 </template>
 
@@ -18,7 +20,7 @@ export default {
     },
     data: function() {
         return {
-            isLogged: false,
+            isLogged: true,
         }
     }
 };

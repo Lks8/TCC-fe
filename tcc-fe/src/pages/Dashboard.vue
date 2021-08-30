@@ -2,7 +2,7 @@
     <div>
         <header><Topbar /></header>
 
-        <Sidebar />
+        <div><Sidebar /></div>
     </div>
 </template>
 
@@ -14,4 +14,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+header {
+    height: 90px;
+}
+
+</style>

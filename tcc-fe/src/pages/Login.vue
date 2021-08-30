@@ -37,7 +37,6 @@ export default {
 
 .core {
     width: 410px;
-    
 }
 
 .logo {
