@@ -1,6 +1,12 @@
 <template>
     <div class="topbar-core">
-        <img class="logowhite" src="/assets/logo_branco.png" alt="logo" />
+        <b-button to="/">
+            <img
+                class="logowhite"
+                src="/assets/logo_branco.png"
+                alt="logo"
+                to="/"
+        /></b-button>
         <div class="user">
             <h1 class="username">Jacinto Pinto Aquino Rego</h1>
             <img class="userpic" src="/assets/user_pic.jpg" alt="userpic" />
@@ -9,7 +15,8 @@
 </template>
 
 <script>
-export default {};
+export default {
+};
 </script>
 
 <style>
@@ -17,13 +24,18 @@ export default {};
 .topbar-core {
     display: flex;
     justify-content: space-between;
-    background: rgb(53,57,59);
-    background: linear-gradient(0deg, rgba(24,26,27,1) 0%, rgba(53,57,59,1) 100%);
+    background: rgb(53, 57, 59);
+    background: linear-gradient(
+        0deg,
+        rgba(24, 26, 27, 1) 0%,
+        rgba(53, 57, 59, 1) 100%
+    );
+    margin-bottom: 100px;
 }
 
 .logowhite {
     display: flex;
-    height: 70px;
+    height: 60px;
     margin: 10px;
 }
 
@@ -36,13 +48,13 @@ export default {};
     font-weight: normal;
     color: #d2d3d4;
     align-self: center;
-    font-size: 23px;
+    font-size: 22px;
 }
 
 .userpic {
     margin-right: 50px;
     margin-left: 20px;
-    height: 60px;
+    height: 50px;
     align-self: center;
     border-radius: 40px;
     border: white;

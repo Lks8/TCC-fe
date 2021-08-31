@@ -9,7 +9,7 @@
                 <input type="login" />
                 <p>Senha</p>
                 <input type="password" />
-                <b-button> ENTRAR
+                <b-button v-on:click="redirect"> ENTRAR
                     <span>
                         <font-awesome-icon icon="arrow-right"/>
                     </span>
@@ -24,6 +24,11 @@ export default {
     name: "Login",
     props: {},
     components: {},
+    methods: {
+        redirect() {
+            this.$router.push("google.com")
+        }
+    }
 };
 </script>
 

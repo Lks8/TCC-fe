@@ -1,8 +1,8 @@
 <template>
     <div>
-        <header><Topbar /></header>
+        <header class="topbar"><Topbar /></header>
 
-        <div><Sidebar /></div>
+        <div class="sidebar"><Sidebar /></div>
     </div>
 </template>
 
@@ -15,8 +15,15 @@ export default {
 </script>
 
 <style>
-header {
-    height: 90px;
+.topbar {
+    position: fixed;
+    height: 80px;
+    width: 100%;
+}
+
+.sidebar {
+    position: relative;
+    padding-top: 80px;
 }
 
 </style>
