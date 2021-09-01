@@ -1,21 +1,21 @@
 <template>
     <div class="main">
-        <div class="core">
+        <container class="core">
             <div class="logo">
-                <img src="/assets/logo.png" alt="logo" />
+                <img src="../static/logo.png" alt="logo" />
             </div>
             <div class="login">
                 <p>Login</p>
                 <input type="login" />
                 <p>Senha</p>
                 <input type="password" />
-                <b-button v-on:click="redirect"> ENTRAR
+                <b-button class="button" to="/" @click="logIn"> ENTRAR
                     <span>
-                        <font-awesome-icon icon="arrow-right"/>
+                        <fa icon="arrow-right" />
                     </span>
                 </b-button>
             </div>
-        </div>
+        </container>
     </div>
 </template>
 
@@ -35,20 +35,19 @@ export default {
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 .main {
+    position: absolute;
     margin-top: 12%;
-    display: inline-flex;
-    height: 500px;
+    text-align: center;
+    width: 410px;
 }
 
 .core {
-    width: 410px;
+    text-align: center;
 }
 
 .logo {
     height: 110px;
-    display: inline-block;
     background-color: #d2d3d4;
-    width: 100%;
 }
 
 img {
@@ -73,14 +72,14 @@ p {
 
 input {
     display: flex;
-    width: 325px;
+    width: 350px;
     height: 40px;
     padding-inline: 10px;
     font-family: "Rubik", "sans-serif";
     font-size: 18px;
 }
 
-b-button {
+.button {
     display: inline-flex;
     font-family: "Rubik", "sans-serif";
     font-size: 20px;
@@ -92,6 +91,8 @@ b-button {
     align-items: center;
     justify-content: center;
     margin-right: 27px;
+    border: 0;
+    border-radius: 0;
 }
 
 span {
@@ -118,10 +119,10 @@ span {
     }
 
     input {
-        width: 85%;
+        width: 95%;
     }
     
-    b-button {
+    .button {
         width: 130px;
     }
 }
