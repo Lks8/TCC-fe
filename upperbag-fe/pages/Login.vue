@@ -14,8 +14,8 @@
 				<input type="password" placeholder="Insira sua senha" />
 				<span class="recover-password" @click="recoverPassword()">
 				    <p class="password-link">Esqueci minha senha</p>
-
 				</span>
+                <Alert v-if="wrongLogin" alert.message="'Login ou senha inválidos'" alert.title="fail" />
 				<b-button class="button" to="/" @click="login()">
 					Entrar
 					<span class="arrow">
@@ -29,24 +29,29 @@
 
 <script>
 	import Password from "../components/Password.vue";
+    import Alert from "../components/Alert.vue";
 
 	export default {
 		name: "Login",
-		props: {
-            forgotPassword: false,
+        data: function() {
+            return {
+                wrongLogin: true,
+                forgotPassword: false,
+            }
         },
 		components: {
 			Password,
+            Alert,
 		},
 		methods: {
 			login() {
 				this.$emit("clicked");
 			},
             recoverPassword() {
-                this.$props.forgotPassword = true;
+                this.forgotPassword = true;
             },
             closeModal() {
-                this.$props.forgotPassword = false;
+                this.forgotPassword = false;
             }
 
 		},
