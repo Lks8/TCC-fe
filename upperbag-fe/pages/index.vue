@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="login" v-if="!isLogged">
-			<Login />
+			<Login @clicked="logIn"/>
 		</div>
         <div class="dashboard" v-else>
             <Dashboard />
@@ -13,30 +13,24 @@
 	import Login from "/pages/Login.vue";
 	import Dashboard from "/pages/Dashboard.vue";
 	export default {
+        props: {
+            isLogged: false,
+        },
 		components: {
 			Login,
 			Dashboard,
 		},
-        created() {
-            const isLogged = false;
-            console.log("carapassouaqui", isLogged);
-            this.$root.$refs.index = this;
-        },
         methods: {
-            logIn: function() {
-                const isLogged = true;
-                console.log("chupameupinto", isLogged);
+            logIn() {
+                this.$props.isLogged = true;
             }
         },
-        data() {
-            return {
-                isLogged: false
-            }
-        },
+        
 	};
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 	.login {
 		background-color: #252829;
 		height: 100vh;
