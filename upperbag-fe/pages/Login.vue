@@ -1,21 +1,26 @@
 <template>
     <div class="main">
-        <container class="core">
+        <div class="core">
             <div class="logo">
                 <img src="../static/logo.png" alt="logo" />
             </div>
             <div class="login">
-                <p>Login</p>
-                <input type="login" />
-                <p>Senha</p>
-                <input type="password" />
-                <b-button class="button" to="/" @click="logIn"> ENTRAR
-                    <span>
+                <p class="input-name">Login</p>
+                <input type="email" placeholder="Insira seu email"/>
+                <p class="input-name">Senha</p>
+                <input type="password" placeholder="Insira sua senha" />
+                <span class="recover-password">
+                    <router-link to="https://google.com">
+                        <p class="password-link">Esqueci minha senha</p>
+                    </router-link>
+                </span>
+                <b-button class="button" to="/" @click="redirect"> ENTRAR
+                    <span class="arrow">
                         <fa icon="arrow-right" />
                     </span>
                 </b-button>
             </div>
-        </container>
+        </div>
     </div>
 </template>
 
@@ -26,7 +31,7 @@ export default {
     components: {},
     methods: {
         redirect() {
-            this.$router.push("google.com")
+            this.$root.$refs.index.logIn();
         }
     }
 };
@@ -52,7 +57,7 @@ export default {
 
 img {
     padding: 14px;
-    width: 210px;
+    width: 250px;
 }
 
 .login {
@@ -61,22 +66,29 @@ img {
     background-color: white;
 }
 
-p {
+.input-name {
     text-align: left;
     font-family: "Rubik", "sans-serif";
     font-weight: bold;
-    margin-block: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
     font-size: 17px;
     margin-left: 5px;
 }
 
 input {
     display: flex;
-    width: 350px;
+    width: 355px;
     height: 40px;
     padding-inline: 10px;
     font-family: "Rubik", "sans-serif";
     font-size: 18px;
+}
+
+input:placeholder-shown {
+   font-style: italic;
+   padding-left: 7px;
+   font-size: 17px;
 }
 
 .button {
@@ -87,7 +99,7 @@ input {
     background-color: #d77f59;
     height: 50px;
     width: 170px;
-    margin-block: 20px;
+    margin-bottom: 10px;
     align-items: center;
     justify-content: center;
     margin-right: 27px;
@@ -95,8 +107,24 @@ input {
     border-radius: 0;
 }
 
-span {
+.arrow {
     padding-left: 8px;
+}
+
+a {
+    color: black;
+}
+
+.recover-password {
+    font-family: "Rubik", "sans-serif";
+    display: block;
+    text-align: right;
+    margin: 5px 33px 0 0;
+    font-size: 15px;
+}
+
+.password-link {
+    text-decoration-line: underline;
 }
 
 @media only screen and (max-width: 425px) {
@@ -106,7 +134,7 @@ span {
     }
     .core {
         margin-left: 10px;
-        width: 92%;
+        width: 95%;
     }
     
     .logo {

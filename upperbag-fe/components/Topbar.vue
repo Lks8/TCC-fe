@@ -1,12 +1,12 @@
 <template>
 	<div class="topbar-core">
-		<NuxtLink to="#">
+		<router-link to="#">
 			<img
 				class="logowhite"
 				src="../static/logo_branco.png"
 				alt="logo"
 			/>
-		</NuxtLink>
+		</router-link>
 		<div class="user">
 			<h1 class="username">Jacinto Pinto Aquino Rego</h1>
 			<img class="userpic" src="../static/user_pic.jpg" alt="userpic" />

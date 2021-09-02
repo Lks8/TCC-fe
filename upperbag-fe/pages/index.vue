@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="login" v-if="isLogged">
+		<div class="login" v-if="!isLogged">
 			<Login />
 		</div>
         <div class="dashboard" v-else>
@@ -13,20 +13,26 @@
 	import Login from "/pages/Login.vue";
 	import Dashboard from "/pages/Dashboard.vue";
 	export default {
-        data: function() {
-            return {
-                isLogged: false
-            }
-        },
 		components: {
 			Login,
 			Dashboard,
 		},
+        created() {
+            const isLogged = false;
+            console.log("carapassouaqui", isLogged);
+            this.$root.$refs.index = this;
+        },
         methods: {
-            logIn () {
+            logIn: function() {
                 const isLogged = true;
+                console.log("chupameupinto", isLogged);
             }
-        }
+        },
+        data() {
+            return {
+                isLogged: false
+            }
+        },
 	};
 </script>
 
