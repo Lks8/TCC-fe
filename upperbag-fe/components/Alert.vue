@@ -1,8 +1,24 @@
 <template>
     <div>
-        <div v-for="alert in alerts" :key="alert.title">
-            <b-img :src="alert.icon" />
-            <p>{{ alert.message }}</p>
+        <div :key="alertType">
+            <p class="alert-message">
+                <fa
+                    class="fail"
+                    icon="times-circle"
+                    v-if="alertIcon == 'fail'"
+                />
+                <fa
+                    class="success"
+                    icon="check-circle"
+                    v-if="alertIcon == 'success'"
+                />
+                <fa
+                    class="warning"
+                    icon="exclamation-triangle"
+                    v-if="alertIcon == 'warning'"
+                />
+                {{ alertMessage }}
+            </p>
         </div>
     </div>
 </template>
@@ -13,14 +29,37 @@ export default {
         return {};
     },
     props: {
-        alerts: [
-            { title: "fail", icon: require("../static/logo.png"), message: "" },
-            { title: "success", icon: require("../static/logo.png"), message: "" },
-            { title: "warning", icon: require("../static/logo.png"), message: "" },
-        ],
+        alertIcon: {
+            type: String,
+            default: () => "fail",
+        },
+        alertMessage: {
+            type: String,
+            default: () => "",
+        },
     },
 };
 </script>
 
 <style>
+
+.alert-message {
+    font-family: "Rubik";
+    font-weight: bold;
+    margin: 0 auto;
+}
+.fail {
+    color: red;
+}
+
+.success {
+    color: green;
+}
+
+.warning {
+    color: orange;
+}
+fa {
+   height: 10px; 
+}
 </style>

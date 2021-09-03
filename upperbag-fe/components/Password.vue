@@ -9,6 +9,7 @@
 				placeholder="Insira seu e-mail"
 				v-model="message"
 			></b-input>
+            <Alert v-if="hasError" alertType="fail" alertMessage="Digite um e-mail válido" />
 			<b-button class="button-password" @click="recoverSent">
 				Enviar e-mail
 				<span class="arrow"><fa icon="arrow-right"/></span>
@@ -62,6 +63,7 @@
 		align-self: center;
 		width: 93%;
 		margin: 0 auto;
+        margin-bottom: 5px;
 		border-color: rgb(118, 118, 118);
 		border-radius: 2px;
 		outline: none;
@@ -89,7 +91,7 @@
 		background-color: #d77f59;
 		border-radius: 0;
 		border: 0;
-		margin: 15px;
+		margin: 10px;
 		font-family: "Rubik", "sans-serif";
 	}
 
