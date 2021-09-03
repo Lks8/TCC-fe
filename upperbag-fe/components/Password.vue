@@ -2,13 +2,14 @@
 	<div>
 		<b-container class="main-password">
 			<b-button-close @click="closeModal" />
-			<p class="hint">Digite o e-mail para alterar sua senha:</p>
+			<p class="hint">Digite seu e-mail para alterar a senha:</p>
 			<b-input
 				class="input"
 				type="email"
 				placeholder="Insira seu e-mail"
+				v-model="message"
 			></b-input>
-			<b-button class="button-password">
+			<b-button class="button-password" @click="recoverSent">
 				Enviar e-mail
 				<span class="arrow"><fa icon="arrow-right"/></span>
 			</b-button>
@@ -18,10 +19,25 @@
 
 <script>
 	export default {
+		data() {
+			return {
+				message: "",
+                hasError: false,
+			};
+		},
 		methods: {
 			closeModal() {
-                this.$emit('closeModal')
-            },
+				this.$emit("closeModal");
+			},
+			recoverSent() {
+                const mandatoryCharacter = '@';
+				if (this.message !== "" && this.message.includes(mandatoryCharacter)) {
+                    this.$emit("recoverSent", this.message);
+				} else {
+                    this.hasError = true;
+                }
+				
+			},
 		},
 	};
 </script>
@@ -32,7 +48,7 @@
 		z-index: 3;
 		background-color: white;
 		justify-content: center;
-        padding: auto;
+		padding: auto;
 	}
 
 	.hint {

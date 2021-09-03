@@ -1,9 +1,10 @@
 <template>
 	<div class="main">
-        <div class="recover" v-if="forgotPassword">
-			<Password  @closeModal="closeModal()"/>
+		<div class="modal" v-if="forgotPassword">
+			<Password @closeModal="closeModal()" @recoverSent="recoverSent" />
 		</div>
-		<div class="core">
+
+		<div class="core" v-bind:class="{active: !isActive}">
 			<div class="logo">
 				<img src="../static/logo.png" alt="logo" />
 			</div>
@@ -12,10 +13,16 @@
 				<input type="email" placeholder="Insira seu e-mail" />
 				<p class="input-name">Senha</p>
 				<input type="password" placeholder="Insira sua senha" />
-				<span class="recover-password" @click="recoverPassword()">
-				    <p class="password-link">Esqueci minha senha</p>
+				<span class="recover-password">
+					<p class="password-link" @click="recoverPassword()">
+						Esqueci minha senha
+					</p>
 				</span>
-                <Alert v-if="wrongLogin" alert.message="'Login ou senha inválidos'" alert.title="fail" />
+				<Alert
+					v-if="wrongLogin"
+					alert.message="'Login ou senha inválidos'"
+					alert.title="fail"
+				/>
 				<b-button class="button" to="/" @click="login()">
 					Entrar
 					<span class="arrow">
@@ -29,31 +36,41 @@
 
 <script>
 	import Password from "../components/Password.vue";
-    import Alert from "../components/Alert.vue";
+	import Alert from "../components/Alert.vue";
 
 	export default {
 		name: "Login",
-        data: function() {
-            return {
-                wrongLogin: true,
-                forgotPassword: false,
-            }
-        },
+		data: function() {
+			return {
+                isActive: true,
+				wrongLogin: true,
+				forgotPassword: false,
+                message: ""
+			};
+		},
 		components: {
 			Password,
-            Alert,
+			Alert,
 		},
 		methods: {
 			login() {
-				this.$emit("clicked");
+				if (!this.forgotPassword) this.$emit("clicked");
 			},
-            recoverPassword() {
-                this.forgotPassword = true;
-            },
-            closeModal() {
-                this.forgotPassword = false;
+			recoverPassword() {
+                this.isActive = false;
+				this.forgotPassword = true;
+			},
+			closeModal() {
+				this.forgotPassword = false;
+                this.isActive = true;
+			},
+            recoverSent(message) {
+                console.log(message)
+                this.message=message;
+                console.log(this.message);
+                this.closeModal();
+                alert("Um e-mail de redefinição de senha foi enviado para " + this.message);
             }
-
 		},
 	};
 </script>
@@ -70,6 +87,9 @@
 	.core {
 		text-align: center;
 	}
+    .core.active {
+        pointer-events: none;
+    }
 
 	.logo {
 		height: 110px;
@@ -128,9 +148,9 @@
 		border-radius: 0;
 	}
 
-    .button:hover {
-        background-color: rgb(204, 96, 49);
-    }
+	.button:hover {
+		background-color: rgb(204, 96, 49);
+	}
 
 	.arrow {
 		padding-left: 10px;
@@ -142,25 +162,32 @@
 
 	.recover-password {
 		font-family: "Rubik", "sans-serif";
-		display: block;
-		text-align: right;
+		display: flex;
+		justify-content: flex-end;
 		margin: 5px 33px 0 0;
 		font-size: 15px;
 	}
 
-    .password-link {
-        text-decoration-line: underline;
-    }
+	.password-link {
+		text-decoration-line: underline;
+		text-align: right;
+	}
 
 	.password-link:hover {
-        cursor: pointer;
+		cursor: pointer;
 		color: #337ab7;
 	}
 
-    .recover {
-        position: absolute;
-        padding: 50px;
-    }
+	.modal {
+		z-index: 5;
+		position: absolute;
+		top: 50px;
+		width: auto;
+		height: auto;
+		left: 50px;
+		display: flex;
+		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
+	}
 
 	@media only screen and (max-width: 425px) {
 		.main {
