@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :key="alertType">
+        <div>
             <p class="alert-message">
                 <fa
                     class="fail"
@@ -49,7 +49,7 @@ export default {
     margin: 0 auto;
 }
 .fail {
-    color: red;
+    color: crimson;
 }
 
 .success {
@@ -58,8 +58,5 @@ export default {
 
 .warning {
     color: orange;
-}
-fa {
-   height: 10px; 
 }
 </style>

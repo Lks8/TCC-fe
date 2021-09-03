@@ -76,14 +76,13 @@ export default {
             this.isActive = true;
         },
         recoverSent(message) {
-            console.log(message);
             this.message = message;
-            console.log(this.message);
             this.closeModal();
             alert(
                 "Um e-mail de redefinição de senha foi enviado para " +
                     this.message
             );
+            this.loginError = false;
         },
         checkLogin() {
             const mandatoryCharacter = "@";
@@ -105,7 +104,7 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 .main {
     position: absolute;
-    margin-top: 12%;
+    margin-top: 9%;
     text-align: center;
     width: 410px;
 }

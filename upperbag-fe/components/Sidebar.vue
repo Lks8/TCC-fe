@@ -1,13 +1,12 @@
 <template> 
     <div>
-        <div class="sidebar-core">
-            <row>
-                <b-button class="button-dash">Dashboard</b-button>
-                
-            </row>
-            <row>
-                <b-button class="button-user-list">User Control List</b-button>
-            </row>
+        <div class="sidebar-core col-12">
+            <b-row>
+                <p class="button-dash">Dashboard</p>
+            </b-row>
+            <b-row>
+                <p class="button-user-list">User Control List</p>
+            </b-row>
         </div>
     </div>
 </template>
@@ -19,11 +18,9 @@ export default {};
 <style>
 .sidebar-core {
     color: #d2d3d4;
-    position: fixed;
     display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
     align-items: flex-start;
+    flex-direction: column;
     background: rgb(53,57,59);
     background: linear-gradient(0deg, rgba(24,26,27,1) 0%, rgba(53,57,59,1) 100%);
     height: 100%;
