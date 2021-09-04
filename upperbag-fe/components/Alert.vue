@@ -42,7 +42,6 @@ export default {
 </script>
 
 <style>
-
 .alert-message {
     font-family: "Rubik";
     font-weight: bold;

@@ -3,14 +3,14 @@
         <header class="topbar"><Topbar /></header>
         <body class="body">
             <b-container class="graph-main">
-                Gráfico
+                <Graph />
             </b-container>
             <b-row>
                 <b-col class="filters-main">
-                    Filtros
+                    <Filters />
                 </b-col>
                 <b-col class="table-main">
-                    Tabela
+                    <TableDashboard />
                 </b-col>
             </b-row>
         </body>
@@ -21,8 +21,11 @@
 <script>
 import Sidebar from "../components/Sidebar.vue";
 import Topbar from "../components/Topbar.vue";
+import Filters from "../components/Dashboard/Filters.vue";
+import Graph from "../components/Dashboard/Graph.vue";
+import TableDashboard from "../components/Dashboard/TableDashboard.vue";
 export default {
-    components: { Topbar, Sidebar },
+    components: { Topbar, Sidebar, Filters, Graph, TableDashboard },
 };
 </script>
 
