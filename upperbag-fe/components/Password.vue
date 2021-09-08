@@ -8,6 +8,7 @@
 				type="email"
 				placeholder="Insira seu e-mail"
 				v-model="message"
+                @keyup.enter="recoverSent()"
 			></b-input>
             <Alert v-if="hasError" alertType="fail" alertMessage="Digite um e-mail válido" />
 			<b-button class="button-password" @click="recoverSent">

@@ -13,12 +13,14 @@
 					type="email"
 					v-model="userLogin"
 					placeholder="Insira seu e-mail"
+                    @keyup.enter="login()"
 				/>
 				<p class="input-name">Senha</p>
 				<input
 					type="password"
 					v-model="userPassword"
 					placeholder="Insira sua senha"
+                    @keyup.enter="login()"
 				/>
 				<span
 					class="recover-password"
