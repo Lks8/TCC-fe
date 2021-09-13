@@ -41,7 +41,7 @@ export default {
 
 .main-program {
     background-color: #252829;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 </style>

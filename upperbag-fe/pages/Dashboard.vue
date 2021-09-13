@@ -8,14 +8,14 @@
 			<b-container class="graph-main">
 				<Graph />
 			</b-container>
-			<!-- <b-row>
+			<b-row>
 				<b-col class="filters-main">
 					<Filters />
 				</b-col>
 				<b-col class="table-main">
 					<TableDashboard />
 				</b-col>
-			</b-row> -->
+			</b-row>
 		</body>
 	</div>
 </template>
@@ -33,11 +33,10 @@
 
 <style>
 	.body-dashboard {
-		/* background-color: crimson; */
 		width: 72%;
 		margin: 0 auto;
 		height: 100%;
-        display: flex;
+        display: block;
         justify-content: center;
 	}
 
@@ -72,16 +71,12 @@
 	}
 
 	.table-main {
-		height: 200px;
-		display: flex;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
+        text-align: center;
+        border-width: 5px solid #d2d3d4;
 	}
 
 	.filters-main {
-		height: 200px;
-		display: flex;
+		height: 300px;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
