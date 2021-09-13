@@ -2,7 +2,7 @@
 	<div>
 		<header class="topbar"><Topbar /></header>
 		<div class="sidebar">
-			<!-- <Sidebar /> -->
+			<Sidebar />
 		</div>
 		<body class="body-dashboard">
 			<b-container class="graph-main">
@@ -48,12 +48,18 @@
 
 	.sidebar {
 		height: 100%;
-		width: 160px;
+		width: 200px;
 		position: fixed;
 		z-index: 1;
 		top: 80px;
 		left: 0;
 		overflow-x: hidden;
+        background: rgb(53, 57, 59);
+		background: linear-gradient(
+			0deg,
+			rgba(24, 26, 27, 1) 0%,
+			rgba(53, 57, 59, 1) 100%
+		);
 	}
 
 	.graph-main {

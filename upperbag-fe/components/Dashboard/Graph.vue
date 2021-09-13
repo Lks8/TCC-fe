@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<line-chart
+		<line-chart class="line-chart"
             :width="800"
 			:chart-data="purpleLineChart.chartData"
 			:gradient-colors="purpleLineChart.gradientColors"

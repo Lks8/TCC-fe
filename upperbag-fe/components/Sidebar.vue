@@ -1,9 +1,8 @@
 <template>
 	<div>
 		<div class="sidebar-core col-12">
-			<p class="button-dash">Dashboard</p>
-
-			<p class="button-user-list">User Control List</p>
+			<b-button class="button-dash" type="link">Dashboard</b-button>
+			<b-button class="button-user-list">User Control List</b-button>
 		</div>
 	</div>
 </template>
@@ -16,14 +15,25 @@
 	.sidebar-core {
 		color: #d2d3d4;
 		display: flex;
-		align-items: flex-start;
 		flex-direction: column;
-		background: rgb(53, 57, 59);
-		background: linear-gradient(
-			0deg,
-			rgba(24, 26, 27, 1) 0%,
-			rgba(53, 57, 59, 1) 100%
-		);
 		height: 100%;
+        padding: 0;
 	}
+
+    .button-dash, .button-user-list {
+        display: flex;
+        background: 0;
+        border: none;
+        padding-block: 15px;
+    }
+
+    .button-dash:hover, .button-user-list:hover {
+        background-color:#e9ecef;
+        color: #16181b;
+    }
+
+    .button-dash:active, .button-user-list:active {
+        background-color: #95989a;
+        color: #fff;
+    }
 </style>

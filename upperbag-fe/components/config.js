@@ -3,7 +3,7 @@ export const basicOptions = {
 	legend: {
 		display: false,
 	},
-	responsive: false,
+	responsive: true,
 };
 
 export const purpleChartOptions = {
