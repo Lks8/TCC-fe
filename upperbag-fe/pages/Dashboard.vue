@@ -2,20 +2,20 @@
 	<div>
 		<header class="topbar"><Topbar /></header>
 		<div class="sidebar">
-			<Sidebar />
+			<!-- <Sidebar /> -->
 		</div>
-		<body class="body">
+		<body class="body-dashboard">
 			<b-container class="graph-main">
 				<Graph />
 			</b-container>
-			<b-row>
+			<!-- <b-row>
 				<b-col class="filters-main">
 					<Filters />
 				</b-col>
 				<b-col class="table-main">
 					<TableDashboard />
 				</b-col>
-			</b-row>
+			</b-row> -->
 		</body>
 	</div>
 </template>
@@ -32,11 +32,13 @@
 </script>
 
 <style>
-	.body {
-		background-color: crimson;
+	.body-dashboard {
+		/* background-color: crimson; */
 		width: 72%;
 		margin: 0 auto;
 		height: 100%;
+        display: flex;
+        justify-content: center;
 	}
 
 	.topbar {
@@ -51,16 +53,16 @@
 		z-index: 1;
 		top: 80px;
 		left: 0;
-		background-color: #111;
 		overflow-x: hidden;
 	}
 
 	.graph-main {
 		display: flex;
-		height: 250px;
+		height: 500px;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
+        width: 72%;
 	}
 
 	.table-main {

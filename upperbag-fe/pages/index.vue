@@ -3,7 +3,7 @@
         <div class="login" v-if="!isLogged">
             <Login @clicked="logIn" />
         </div>
-        <div class="dashboard" v-else>
+        <div class="main-program" v-else>
             <Dashboard />
         </div>
     </div>
@@ -39,8 +39,9 @@ export default {
     justify-content: center;
 }
 
-.dashboard {
+.main-program {
     background-color: #252829;
     height: 100vh;
+    width: 100vw;
 }
 </style>

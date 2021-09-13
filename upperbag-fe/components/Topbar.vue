@@ -16,10 +16,10 @@
 				class="user"
 			>
 				<template #button-content>
-					<h1 class="username">Jacinto Pinto Aquino Rego</h1>
+					<h1 class="username">Daniel Ricciardo</h1>
 					<img
 						class="userpic"
-						src="../static/user_pic.jpg"
+						src="../static/danny.jpg"
 						alt="userpic"
 					/>
 				</template>
@@ -78,6 +78,7 @@
 		color: #d2d3d4;
 		align-self: center;
 		font-size: 22px;
+        margin-bottom: 0;
 	}
 
 	.user:hover .btn-link {
@@ -97,7 +98,7 @@
 		margin-left: 20px;
 		height: 50px;
 		align-self: center;
-		border-radius: 40px;
+		border-radius: 100px;
 		border: white;
 	}
 
@@ -119,7 +120,7 @@
 		border-radius: 0;
 		background-color: rgb(53, 57, 59);
 		top: 3px !important;
-		left: 211px !important;
+		left: 30% !important;
 		padding: 0;
 		font-family: "Rubik";
 		font-size: 18px;
