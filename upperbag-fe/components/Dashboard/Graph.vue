@@ -1,7 +1,8 @@
 <template>
 	<div id="app">
-		<line-chart class="line-chart"
-            :width="1300"
+		<line-chart
+			class="line-chart"
+			:width="1300"
 			:chart-data="purpleLineChart.chartData"
 			:gradient-colors="purpleLineChart.gradientColors"
 			:gradient-stops="purpleLineChart.gradientStops"
@@ -30,7 +31,20 @@
 		},
 	};
 
-	const months = ["JAN", "FEV", "MAR", "ABR", "MAI","JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+	const months = [
+		"JAN",
+		"FEV",
+		"MAR",
+		"ABR",
+		"MAI",
+		"JUN",
+		"JUL",
+		"AUG",
+		"SEP",
+		"OCT",
+		"NOV",
+		"DEC",
+	];
 
 	export default {
 		name: "App",
@@ -65,18 +79,31 @@
 							},
 						],
 					},
+                    sales: Array,
 					gradientColors: config.colors.primaryGradient,
 					gradientStops: [1, 0.2, 0],
 				},
 			};
 		},
+		props: {
+			months: months
+		},
+        mounted() {
+            this.sales = this.purpleLineChart.chartData.datasets[0].data;
+            this.getValues();
+        },
+        methods: {
+            getValues: function() {
+                this.$emit("getValues", this.sales);
+            }
+        }
 	};
 </script>
 
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+	@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 	body {
-		background-color: #35393B;
+		background-color: #35393b;
 	}
 	#app {
 		font-family: "Rubik", "sans-serif";

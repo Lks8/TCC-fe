@@ -6,14 +6,14 @@
 		</div>
 		<body class="body-dashboard">
 			<b-container class="graph-main">
-				<Graph />
+				<Graph @getValues="getValues" />
 			</b-container>
 			<b-row>
 				<b-col class="filters-main">
 					<Filters />
 				</b-col>
 				<b-col class="table-main">
-					<TableDashboard />
+					<TableDashboard :items="items" />
 				</b-col>
 			</b-row>
 		</body>
@@ -27,7 +27,17 @@
 	import Graph from "../components/Dashboard/Graph.vue";
 	import TableDashboard from "../components/Dashboard/TableDashboard.vue";
 	export default {
+        data() {
+            return {
+                items: []
+            }
+        },
 		components: { Topbar, Sidebar, Filters, Graph, TableDashboard },
+        methods: {
+            getValues(sales) {
+                this.items = [Graph.props.months.type,sales]
+			},
+        }
 	};
 </script>
 

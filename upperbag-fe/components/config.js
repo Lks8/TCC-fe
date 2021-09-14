@@ -23,7 +23,7 @@ export const purpleChartOptions = {
 			{
 				barPercentage: 1,
 				gridLines: {
-					drawBorder: false,
+					drawBorder: true,
 					color: "rgba(255,255,255,0.5)",
 					zeroLineColor: "transparent",
 				},

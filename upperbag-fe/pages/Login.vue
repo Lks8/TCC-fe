@@ -13,14 +13,14 @@
 					type="email"
 					v-model="userLogin"
 					placeholder="Insira seu e-mail"
-                    @keyup.enter="login()"
+					@keyup.enter="login()"
 				/>
 				<p class="input-name">Senha</p>
 				<input
 					type="password"
 					v-model="userPassword"
 					placeholder="Insira sua senha"
-                    @keyup.enter="login()"
+					@keyup.enter="login()"
 				/>
 				<span
 					class="recover-password"
@@ -54,6 +54,7 @@
 		name: "Login",
 		data: function() {
 			return {
+                
 				isActive: true,
 				wrongLogin: true,
 				forgotPassword: false,
@@ -68,8 +69,10 @@
 			Alert,
 		},
 		methods: {
-			login() {
-				if (this.checkLogin()) this.$emit("clicked");
+			async login() {
+				if (this.checkLogin()) {
+                    this.$emit("clicked");
+                }
 			},
 			recoverPassword() {
 				this.isActive = false;
