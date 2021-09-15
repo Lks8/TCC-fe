@@ -1,5 +1,11 @@
 <template>
 	<div id="app">
+        <span class="badge-tier">
+            <p class="filter-title">Filtros utilizados:</p>
+            <b-badge class="badges" variant="info" pill v-for="filter in filters" :key="filter">
+                {{filter}}
+            </b-badge>
+        </span>
 		<line-chart
 			class="line-chart"
 			:width="1300"
@@ -53,6 +59,7 @@
 		},
 		data() {
 			return {
+                filters: ["Camiseta","Cor: Branco","Tamanho: M","Gola V"],
 				purpleLineChart: {
 					extraOptions: chartConfigs.purpleChartOptions,
 					chartData: {
@@ -110,6 +117,26 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		color: #2c3e50;
-		margin-top: 40px;
 	}
+    .badge-tier {
+        align-items: center;
+        display: flex;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+        color: #fff;
+    }
+    .badges {
+        display: flex;
+        margin-top: 3px;
+        margin-left: 5px;
+        font-weight: 500;
+        font-size: 13px;
+        justify-content: center;
+        align-items: center;
+    }
+    .filter-title {
+        margin: 0;
+        margin-right: 10px;
+        font-size: 22px;
+    }
 </style>

@@ -43,24 +43,29 @@
 
 <style>
 	.body-dashboard {
+        z-index: -2;
 		width: 72%;
 		margin: 0 auto;
 		height: 100%;
         display: block;
         justify-content: center;
+        margin-top: 80px;
 	}
 
 	.topbar {
 		height: 80px;
 		width: 100%;
+        z-index: 5;
+        position: fixed;
+        top: 0;
 	}
 
 	.sidebar {
-		height: 100%;
+		height: 100vh;
 		width: 269px;
 		position: fixed;
-		z-index: 1;
-		top: 80px;
+        z-index: 0;
+		top: 0;
 		left: 0;
 		overflow-x: hidden;
         background: rgb(53, 57, 59);

@@ -5,14 +5,14 @@
 				<th id="mes">Mês</th>
 				<th id="vendas">Vendas</th>
 			</tr>
-			<tr v-for="(item, index) in items[0]">
-				<td v-for="item in items">
+			<tr v-for="(item, index) in items[0]" :key="index">
+				<td v-for="item in items" :key="item">
 					{{ item[index] }}
 				</td>
 			</tr>
 		</table>
 
-		<b-button @click="refreshTable">Recarregar tabela</b-button>
+		<b-button v-if="suma" @click="refreshTable">Mostrar tabela</b-button>
 	</div>
 </template>
 
@@ -30,10 +30,10 @@
                 this.suma = false
 			},
 		},
-		mounted() {
-			console.log("carrega essa bct", this.items);
-			this.refreshTable();
-		},
+		// mounted() {
+		// 	console.log("carrega essa bct", this.items);
+		// 	this.refreshTable();
+		// },
 	};
 </script>
 

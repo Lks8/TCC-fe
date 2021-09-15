@@ -45,6 +45,7 @@
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 	.topbar-core {
+        z-index: 100;
 		display: flex;
 		justify-content: space-between;
 		background: rgb(53, 57, 59);
