@@ -25,7 +25,7 @@ export const purpleChartOptions = {
 				gridLines: {
 					drawBorder: true,
 					color: "rgba(255,255,255,0.5)",
-					zeroLineColor: "transparent",
+					zeroLineColor: "rgba(255,255,255,0.5)",
 				},
 				ticks: {
 					suggestedMin: 60,
