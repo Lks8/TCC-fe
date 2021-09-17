@@ -35,7 +35,7 @@ export default {
 				imports: [
 					{
 						set: "@fortawesome/free-solid-svg-icons",
-						icons: ["faArrowRight", "faTimesCircle", "faCheckCircle", "faExclamationTriangle", "faSignOutAlt"],
+						icons: ["faArrowRight", "faTimesCircle", "faCheckCircle", "faExclamationTriangle", "faSignOutAlt", "faSearch","faCheck","faMinusCircle"]
 					},
 				],
 			},

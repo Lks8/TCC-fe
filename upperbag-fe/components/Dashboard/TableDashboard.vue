@@ -1,6 +1,8 @@
 <template>
 	<div class="border-table">
-		<table class="maintable" ref="table">
+        <b-button v-if="suma" @click="refreshTable">Mostrar tabela</b-button>
+        <b-button v-else @click="refreshTable">Esconder tabela</b-button>
+		<table class="maintable" ref="table" v-if="!this.suma">
 			<tr>
 				<th id="mes">Mês</th>
 				<th id="vendas">Vendas</th>
@@ -10,9 +12,7 @@
 					{{ item[index] }}
 				</td>
 			</tr>
-		</table>
-
-		<b-button v-if="suma" @click="refreshTable">Mostrar tabela</b-button>
+		</table>		
 	</div>
 </template>
 
@@ -27,13 +27,9 @@
 		methods: {
 			refreshTable() {
 				this.items = this.$attrs.items;
-                this.suma = false
+                this.suma = !this.suma
 			},
 		},
-		// mounted() {
-		// 	console.log("carrega essa bct", this.items);
-		// 	this.refreshTable();
-		// },
 	};
 </script>
 

@@ -15,6 +15,7 @@
 			:extra-options="purpleLineChart.extraOptions"
 		>
 		</line-chart>
+        
 	</div>
 </template>
 

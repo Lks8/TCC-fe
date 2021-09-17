@@ -8,6 +8,7 @@
 			<b-container class="graph-main">
 				<Graph @getValues="getValues" />
 			</b-container>
+            <hr style="border-color: #212529; border-width: 7px">
 			<b-row>
 				<b-col class="filters-main">
 					<Filters />
