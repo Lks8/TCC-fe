@@ -17,7 +17,6 @@
 		flex-direction: column;
 		height: 100%;
         padding: 0;
-        top: 80px;
 	}
 
     .button-dash, .button-user-list {

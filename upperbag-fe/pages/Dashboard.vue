@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="min-height: 100vh">
 		<header class="topbar"><Topbar /></header>
 		<div class="sidebar">
 			<Sidebar />
@@ -44,36 +44,31 @@
 <style>
 	.body-dashboard {
         z-index: -2;
+        min-height: 91.5vh;
 		width: 72%;
 		margin: 0 auto;
 		height: 100%;
         display: block;
         justify-content: center;
-        margin-top: 80px;
 	}
 
 	.topbar {
 		height: 80px;
 		width: 100%;
         z-index: 5;
-        position: fixed;
         top: 0;
 	}
 
 	.sidebar {
-		height: 100vh;
+        height: 100%;
 		width: 269px;
-		position: fixed;
+        float: left;
+		position: sticky;
+        position: -webkit-sticky;
         z-index: 0;
 		top: 0;
-		left: 0;
 		overflow-x: hidden;
-        background: rgb(53, 57, 59);
-		background: linear-gradient(
-			0deg,
-			rgba(24, 26, 27, 1) 0%,
-			rgba(53, 57, 59, 1) 100%
-		);
+        background: none;
 	}
 
 	.graph-main {
