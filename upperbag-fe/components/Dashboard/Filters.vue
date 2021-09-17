@@ -46,16 +46,14 @@
             </span>
             <span class="organize-filters">
                 <span class="organize-search">
-                    <h4>Parâmetros:</h4>
-                    <b-input-group>
+                    <h4 class="text-parameters">Parâmetros:</h4>
+                    <b-input-group class="search-filter">
                         <b-input placeholder="Digite o filtro desejado" />
                         <b-input-group-append>
                             <b-button><fa icon="search" /></b-button>
                         </b-input-group-append>
                     </b-input-group>
-
-                    <b-button class="remove-preset" variant="danger"><fa icon="minus-circle" /></b-button>
-                    <b-button class="apply-preset" variant="success"><fa icon="check" /></b-button>
+                    <b-button class="apply-preset" variant="success"><fa icon="plus" /></b-button>
                 </span>
                 <span class="organize-selected">
                     <b-badge
@@ -64,11 +62,16 @@
                         variant="info"
                         v-for="preset in presets"
                         :key="preset"
-                        >{{ preset }}</b-badge
+                        >{{ preset }}<b-button-close class="close" /></b-badge
                     >
                 </span>
                 <span class="organize-create">
-                    <b-button class="button-new-preset">Criar nova predefinição</b-button>
+                    <b-input-group class="create-preset">
+                        <b-input placeholder="Nome da predefinição" />
+                        <b-input-group-append>
+                            <b-button class="button-new-preset"><fa icon="plus" /></b-button>
+                        </b-input-group-append>
+                    </b-input-group>
                     <b-button class="button-new-forecast" variant="info">Criar forecast</b-button>
                 </span>
             </span>
@@ -165,31 +168,67 @@ option {
     margin-inline: 5px;
 }
 .organize-search {
+    margin-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-inline: 10px;
-    margin-left: 8px;
+    padding-block: 10px;
+    margin-left: 20px;
+    margin-right: 14px;
+    background-color: #252829;
+    border-radius: 15px 15px 0px 0px;
+}
+.text-parameters {
+    margin-inline: 10px;
+    color: #d2d3d4;
+}
+.search-filter {
+    margin-right: 5px;
+}
+.organize-search > .apply-preset {
+    margin-right: 15px;
 }
 .organize-selected {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
-    margin-left: 15px;
-    max-width: 635px;
     flex-wrap: wrap;
+    background-color: #252829;
+    border-radius: 0px 0px 15px 15px;
+    margin: 0px 14px 0px 20px;
+    padding: 5px;
+}
+
+.organize-selected > .badges {
+    margin-block: 5px;
+}
+.close {
+    color: black;
+    opacity: 0.8;
+    text-shadow: none;
+    font-size: 1rem;
+    margin-left: 5px;
 }
 .organize-create {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
-.button-new-preset, .button-new-forecast {
-    padding-inline: 20px;
+.create-preset {
+    margin-inline: 20px;    
+}
+.button-new-preset {
+    width: min-content;
+    font-weight: bold;
+    margin-right: 20px;
+}
+.button-new-forecast {
+    padding: 2px 20px 2px 20px;
     margin-inline: 5px;
     width: min-content;
+    font-weight: bold;
+    font-size: 20px;
 }
 </style>

@@ -61,7 +61,6 @@
 	}
 
 	.sidebar {
-        height: 100%;
 		width: 269px;
         float: left;
 		position: sticky;
@@ -87,7 +86,6 @@
 	}
 
 	.filters-main {
-		height: 300px;
 		text-align: center;
 		align-items: center;
 		justify-content: center;
