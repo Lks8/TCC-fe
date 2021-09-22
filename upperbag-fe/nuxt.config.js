@@ -21,7 +21,9 @@ export default {
 	css: [],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: [],
+	plugins: [
+        "~/plugins/axios",
+    ],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
@@ -35,19 +37,30 @@ export default {
 				imports: [
 					{
 						set: "@fortawesome/free-solid-svg-icons",
-						icons: ["faArrowRight", "faTimesCircle", "faCheckCircle", "faExclamationTriangle", "faSignOutAlt", "faSearch","faCheck","faMinusCircle","faPlus"]
+						icons: [
+							"faArrowRight",
+							"faTimesCircle",
+							"faCheckCircle",
+							"faExclamationTriangle",
+							"faSignOutAlt",
+							"faSearch",
+							"faCheck",
+							"faMinusCircle",
+							"faPlus",
+						],
 					},
 				],
 			},
 		],
 	],
 
-	// Modules: https://go.nuxtjs.dev/config-modules
-	modules: [
-		// https://go.nuxtjs.dev/bootstrap
-		"bootstrap-vue/nuxt",
-	],
+	modules: ["bootstrap-vue/nuxt", "@nuxtjs/axios"],
 
-	// Build Configuration: https://go.nuxtjs.dev/config-build
 	build: {},
+
+	axios: {
+        https: false,
+		baseUrl:
+			"http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/Forecast",
+	},
 };

@@ -49,7 +49,7 @@
 <script>
 	import Password from "../components/Password.vue";
 	import Alert from "../components/Alert.vue";
-	import api from "../components/api";
+    import axios from "@nuxtjs/axios";
 
 	export default {
 		name: "Login",
@@ -62,7 +62,7 @@
 				userLogin: "",
 				userPassword: "",
 				loginError: false,
-                user: "",
+	            user: "",
 			};
 		},
 		components: {
@@ -70,8 +70,8 @@
 			Alert,
 		},
 		methods: {
-			login() {
-                const mandatoryCharacter = "@";
+			async login() {
+	               const mandatoryCharacter = "@";
 				if (
 					this.userLogin !== "" &&
 					this.userLogin.includes(mandatoryCharacter)
@@ -79,22 +79,22 @@
 					this.loginError = false;
 				} else {
 					this.loginError = true;
-                    return false;
+	                   return false;
 				}
-				api.post("/api/User/Login", {
+				await this.$axios.$post("/api/User/Login", {
 					email: this.userLogin,
 					password: this.userPassword,
 				})
-					.then((res) => {
-						this.user = res.data;
-                        this.loginError = false;
-                        console.log(user);
-                        this.$emit("clicked");
-					})
-					.catch((error) => {
-						console.log(error);
-                        this.loginError = true;
-					});
+                .then(function (res) {
+                    this.user = res.data;
+                    this.loginError = false;
+                    console.log(user);
+                    this.$emit("clicked");
+                })
+                .catch(function (error) {
+                    console.log(error);
+                    // this.loginError = true;
+                });
 			},
 			recoverPassword() {
 				this.isActive = false;
