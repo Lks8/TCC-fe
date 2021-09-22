@@ -49,12 +49,12 @@
 <script>
 	import Password from "../components/Password.vue";
 	import Alert from "../components/Alert.vue";
+	import api from "../components/api";
 
 	export default {
 		name: "Login",
 		data: function() {
 			return {
-                
 				isActive: true,
 				wrongLogin: true,
 				forgotPassword: false,
@@ -62,6 +62,7 @@
 				userLogin: "",
 				userPassword: "",
 				loginError: false,
+                user: "",
 			};
 		},
 		components: {
@@ -69,10 +70,31 @@
 			Alert,
 		},
 		methods: {
-			async login() {
-				if (this.checkLogin()) {
-                    this.$emit("clicked");
-                }
+			login() {
+                const mandatoryCharacter = "@";
+				if (
+					this.userLogin !== "" &&
+					this.userLogin.includes(mandatoryCharacter)
+				) {
+					this.loginError = false;
+				} else {
+					this.loginError = true;
+                    return false;
+				}
+				api.post("/api/User/Login", {
+					email: this.userLogin,
+					password: this.userPassword,
+				})
+					.then((res) => {
+						this.user = res.data;
+                        this.loginError = false;
+                        console.log(user);
+                        this.$emit("clicked");
+					})
+					.catch((error) => {
+						console.log(error);
+                        this.loginError = true;
+					});
 			},
 			recoverPassword() {
 				this.isActive = false;
@@ -90,18 +112,6 @@
 						this.message
 				);
 				this.loginError = false;
-			},
-			checkLogin() {
-				const mandatoryCharacter = "@";
-				if (
-					this.userLogin !== "" &&
-					this.userLogin.includes(mandatoryCharacter)
-				) {
-					this.loginError = false;
-					return true;
-				} else {
-					this.loginError = true;
-				}
 			},
 		},
 	};
