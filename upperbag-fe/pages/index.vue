@@ -4,7 +4,7 @@
 			<Login @clicked="logIn" />
 		</div>
 		<div class="main-program" v-else>
-			<Dashboard :user="this.user" />
+			<Dashboard :user="user"/>
 		</div>
 	</div>
 </template>
@@ -17,7 +17,7 @@
 		data() {
 			return {
 				isLogged: false,
-                user: "",
+                user: '',
 			};
 		},
 		components: {

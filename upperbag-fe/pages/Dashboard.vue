@@ -1,8 +1,8 @@
 <template>
 	<div style="min-height: 100vh">
-		<header class="topbar"><Topbar :user="this.user" /></header>
+		<header class="topbar"><Topbar :user="user" /></header>
 		<div class="sidebar">
-			<Sidebar />
+			<Sidebar v-if="this.user.isAdmin" />
 		</div>
 		<body class="body-dashboard">
 			<b-container class="graph-main">
@@ -31,13 +31,13 @@
         data() {
             return {
                 items: [],
-                user: this.user,
+                user: this.$attrs.user
             }
         },
 		components: { Topbar, Sidebar, Filters, Graph, TableDashboard },
         methods: {
             getValues(sales) {
-                this.items = [Graph.props.months.type,sales]
+                this.items = [Graph.props.months.type,sales];
 			},
         }
 	};

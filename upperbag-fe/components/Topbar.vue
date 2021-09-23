@@ -16,7 +16,7 @@
 				class="user"
 			>
 				<template #button-content>
-					<h1 class="username">{{this.userName}}</h1>
+					<h1 class="username">{{$attrs.user.name}}</h1>
 					<img
 						class="userpic"
 						src="../static/danny.jpg"
@@ -36,7 +36,7 @@
 	export default {
         data() {
             return {
-                userName: this.user.name,
+                user: ''
             }
         },
 		methods: {
