@@ -49,7 +49,6 @@
 <script>
 	import Password from "../components/Password.vue";
 	import Alert from "../components/Alert.vue";
-    import axios from "@nuxtjs/axios";
 
 	export default {
 		name: "Login",
@@ -62,7 +61,7 @@
 				userLogin: "",
 				userPassword: "",
 				loginError: false,
-	            user: "",
+				user: null,
 			};
 		},
 		components: {
@@ -71,7 +70,7 @@
 		},
 		methods: {
 			async login() {
-	               const mandatoryCharacter = "@";
+				const mandatoryCharacter = "@";
 				if (
 					this.userLogin !== "" &&
 					this.userLogin.includes(mandatoryCharacter)
@@ -79,22 +78,21 @@
 					this.loginError = false;
 				} else {
 					this.loginError = true;
-	                   return false;
+					return false;
 				}
-				await this.$axios.$post("/api/User/Login", {
-					email: this.userLogin,
-					password: this.userPassword,
-				})
-                .then(function (res) {
-                    this.user = res.data;
-                    this.loginError = false;
-                    console.log(user);
-                    this.$emit("clicked");
-                })
-                .catch(function (error) {
-                    console.log(error);
-                    // this.loginError = true;
-                });
+				await this.$axios
+					.$post(
+						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/Login?email=${this.userLogin}&password=${this.userPassword}`
+					)
+					.then(response => {
+						this.user = response.user;
+						this.loginError = false;
+						this.$emit("clicked", this.user);
+					})
+					.catch(error => {
+						console.log("cai aqui",error);
+                        this.loginError = true;
+					});
 			},
 			recoverPassword() {
 				this.isActive = false;

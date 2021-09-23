@@ -22,7 +22,6 @@ export default {
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
 	plugins: [
-        "~/plugins/axios",
     ],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
@@ -61,6 +60,6 @@ export default {
 	axios: {
         https: false,
 		baseUrl:
-			"http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/Forecast",
+			"http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/",
 	},
 };

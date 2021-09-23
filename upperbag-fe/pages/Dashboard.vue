@@ -1,6 +1,6 @@
 <template>
 	<div style="min-height: 100vh">
-		<header class="topbar"><Topbar /></header>
+		<header class="topbar"><Topbar :user="this.user" /></header>
 		<div class="sidebar">
 			<Sidebar />
 		</div>
@@ -30,7 +30,8 @@
 	export default {
         data() {
             return {
-                items: []
+                items: [],
+                user: this.user,
             }
         },
 		components: { Topbar, Sidebar, Filters, Graph, TableDashboard },

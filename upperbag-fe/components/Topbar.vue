@@ -16,7 +16,7 @@
 				class="user"
 			>
 				<template #button-content>
-					<h1 class="username">Daniel Ricciardo</h1>
+					<h1 class="username">{{this.userName}}</h1>
 					<img
 						class="userpic"
 						src="../static/danny.jpg"
@@ -34,6 +34,11 @@
 
 <script>
 	export default {
+        data() {
+            return {
+                userName: this.user.name,
+            }
+        },
 		methods: {
 			redirectToHome() {
 				return this.$router.push("#");
