@@ -4,7 +4,7 @@
 			<Login @clicked="logIn" />
 		</div>
 		<div class="main-program" v-else>
-			<Dashboard :user="user"/>
+			<Dashboard />
 		</div>
 	</div>
 </template>
@@ -17,17 +17,20 @@
 		data() {
 			return {
 				isLogged: false,
-                user: '',
 			};
+		},
+		mounted() {
+			if (localStorage.getItem("userName")) {
+				this.isLogged = true;
+			}
 		},
 		components: {
 			Login,
 			Dashboard,
 		},
 		methods: {
-			logIn(user) {
+			logIn() {
 				this.isLogged = true;
-                this.user = user;
 			},
 		},
 	};

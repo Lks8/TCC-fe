@@ -16,14 +16,14 @@
 				class="user"
 			>
 				<template #button-content>
-					<h1 class="username">{{$attrs.user.name}}</h1>
+					<h1 class="username">{{userName}}</h1>
 					<img
 						class="userpic"
 						src="../static/danny.jpg"
 						alt="userpic"
 					/>
 				</template>
-				<b-dropdown-item href="/">
+				<b-dropdown-item @click="logout">
                     Sair
                     <fa class="icon" icon="sign-out-alt"/>
                 </b-dropdown-item>
@@ -36,13 +36,17 @@
 	export default {
         data() {
             return {
-                user: ''
+                userName: localStorage.getItem("userName")
             }
         },
 		methods: {
 			redirectToHome() {
 				return this.$router.push("#");
 			},
+            logout() {
+			    localStorage.clear();
+                this.$router.go(0);
+		    },
 		},
 	};
 </script>

@@ -62,6 +62,7 @@
 				userPassword: "",
 				loginError: false,
 				user: null,
+				token: "",
 			};
 		},
 		components: {
@@ -84,14 +85,16 @@
 					.$post(
 						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/Login?email=${this.userLogin}&password=${this.userPassword}`
 					)
-					.then(response => {
+					.then((response) => {
 						this.user = response.user;
+						this.token = response.token;
 						this.loginError = false;
-						this.$emit("clicked", this.user);
+                        this.storeData(this.token, this.user);
+						this.$emit("clicked");
 					})
-					.catch(error => {
-						console.log("cai aqui",error);
-                        this.loginError = true;
+					.catch((error) => {
+						console.log("cai aqui", error);
+						this.loginError = true;
 					});
 			},
 			recoverPassword() {
@@ -110,6 +113,14 @@
 						this.message
 				);
 				this.loginError = false;
+			},
+            storeData(token, user) {
+				if (process.client) {
+					localStorage.setItem("authToken", token);
+                    localStorage.setItem("userName", user.name);
+                    localStorage.setItem("userEmail", user.email);
+                    localStorage.setItem("userAdmin", user.isAdmin);
+				}
 			},
 		},
 	};

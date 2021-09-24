@@ -1,8 +1,8 @@
 <template>
 	<div style="min-height: 100vh">
-		<header class="topbar"><Topbar :user="user" /></header>
+		<header class="topbar"><Topbar /></header>
 		<div class="sidebar">
-			<Sidebar v-if="this.user.isAdmin" />
+			<Sidebar v-if="this.userAdmin" />
 		</div>
 		<body class="body-dashboard">
 			<b-container class="graph-main">
@@ -31,7 +31,7 @@
         data() {
             return {
                 items: [],
-                user: this.$attrs.user
+                userAdmin: localStorage.getItem("userAdmin")
             }
         },
 		components: { Topbar, Sidebar, Filters, Graph, TableDashboard },
