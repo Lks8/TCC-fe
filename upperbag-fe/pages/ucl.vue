@@ -1,20 +1,16 @@
 <template>
 	<div class="html">
-		<div class="login" v-if="!isLogged">
-			<Login @clicked="logIn" />
-		</div>
-		<div class="main-program" v-else>
-            <Bars />
-			<Dashboard />
+		<div class="main-program">
+			<Bars />
+			<div class="main-ucl">
+				
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import Login from "../components/Login/Login.vue";
-	import Dashboard from "../components/Dashboard/Dashboard.vue";
-    import Bars from "../components/Bars/Bars.vue";
-
+	import Bars from "../components/Bars/Bars.vue";
 	export default {
 		data() {
 			return {
@@ -27,9 +23,7 @@
 			}
 		},
 		components: {
-			Login,
-			Dashboard,
-            Bars,
+			Bars,
 		},
 		methods: {
 			logIn() {
@@ -41,13 +35,6 @@
 
 <style scoped>
 	@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
-	.login {
-		background-color: #252829;
-		height: 100vh;
-		display: flex;
-		justify-content: center;
-	}
-
 	.main-program {
 		background-color: #252829;
 		background: linear-gradient(
@@ -63,4 +50,13 @@
 	.html {
 		min-height: 100vh;
 	}
+    .main-ucl {
+        z-index: -2;
+        min-height: 91.5vh;
+		width: 72%;
+		margin: 0 auto;
+		height: 100%;
+        display: block;
+        justify-content: center;
+    }
 </style>

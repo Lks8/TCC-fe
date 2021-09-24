@@ -1,9 +1,5 @@
 <template>
-	<div style="min-height: 100vh">
-		<header class="topbar"><Topbar /></header>
-		<div class="sidebar">
-			<Sidebar v-if="this.userAdmin" />
-		</div>
+	<div>
 		<body class="body-dashboard">
 			<b-container class="graph-main">
 				<Graph @getValues="getValues" />
@@ -22,19 +18,16 @@
 </template>
 
 <script>
-	import Sidebar from "../components/Sidebar.vue";
-	import Topbar from "../components/Topbar.vue";
-	import Filters from "../components/Dashboard/Filters.vue";
-	import Graph from "../components/Dashboard/Graph.vue";
-	import TableDashboard from "../components/Dashboard/TableDashboard.vue";
+	import Filters from "./Filters.vue";
+	import Graph from "./Graph.vue";
+	import TableDashboard from "./TableDashboard.vue";
 	export default {
         data() {
             return {
                 items: [],
-                userAdmin: localStorage.getItem("userAdmin")
             }
         },
-		components: { Topbar, Sidebar, Filters, Graph, TableDashboard },
+		components: { Filters, Graph, TableDashboard },
         methods: {
             getValues(sales) {
                 this.items = [Graph.props.months.type,sales];
@@ -52,24 +45,6 @@
 		height: 100%;
         display: block;
         justify-content: center;
-	}
-
-	.topbar {
-		height: 80px;
-		width: 100%;
-        z-index: 5;
-        top: 0;
-	}
-
-	.sidebar {
-		width: 269px;
-        float: left;
-		position: sticky;
-        position: -webkit-sticky;
-        z-index: 0;
-		top: 0;
-		overflow-x: hidden;
-        background: none;
 	}
 
 	.graph-main {

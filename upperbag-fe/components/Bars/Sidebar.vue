@@ -1,14 +1,23 @@
 <template>
 	<div>
 		<div class="sidebar-core col-12">
-			<b-button class="button-dash" type="link">Dashboard</b-button>
-			<b-button class="button-user-list">User Control List</b-button>
+			<b-button class="button-dash" type="link" @click="toHome">Dashboard</b-button>
+			<b-button class="button-user-list" @click="toUcl">User Control List</b-button>
 		</div>
 	</div>
 </template>
 
 <script>
-	export default {};
+	export default {
+        methods: {
+            toHome() {
+                this.$router.push('/');
+            },
+            toUcl() {
+                this.$router.push('/ucl');
+            },
+        }
+    };
 </script>
 
 <style>

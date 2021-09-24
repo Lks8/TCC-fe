@@ -2,7 +2,7 @@
 	<div class="topbar-core">
 		<img
 			class="logowhite"
-			src="../static/logo_branco.png"
+            :src="require(`@/static/logo_branco.png`)"
 			alt="logo"
 			@click="redirectToHome"
 		/>
@@ -19,7 +19,7 @@
 					<h1 class="username">{{userName}}</h1>
 					<img
 						class="userpic"
-						src="../static/danny.jpg"
+                        :src="require(`@/static/danny.jpg`)"
 						alt="userpic"
 					/>
 				</template>

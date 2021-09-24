@@ -5,7 +5,7 @@
 		</div>
 		<div class="core" v-bind:class="{ active: !isActive }">
 			<div class="logo">
-				<img src="../static/logo.png" alt="logo" />
+				<img :src="require(`@/static/logo.png`)" alt="logo" />
 			</div>
 			<div class="login">
 				<p class="input-name">Login</p>
@@ -47,8 +47,8 @@
 </template>
 
 <script>
-	import Password from "../components/Password.vue";
-	import Alert from "../components/Alert.vue";
+	import Password from "./Password.vue";
+	import Alert from "../Alert.vue";
 
 	export default {
 		name: "Login",
