@@ -2,10 +2,16 @@
 	<div class="html">
 		<div class="main-program">
 			<Bars />
-			<div class="main-ucl">
+			<div class="core-ucl">
 				<div class="crud-control">
-					<b-button variant="info">Criar</b-button>
-                    <b-button variant="danger">Deletar</b-button>
+                    <b-input-group class="search-filter">
+                        <b-input placeholder="Digite o usuário" />
+                        <b-input-group-append>
+                            <b-button><fa icon="search" /></b-button>
+                        </b-input-group-append>
+                    </b-input-group>
+                    <b-button variant="danger">Remover usuário</b-button>
+					<b-button variant="info">Adicionar usuário</b-button>
 				</div>
                 <TableUcl />
 			</div>
@@ -56,7 +62,7 @@
 	.html {
 		min-height: 100vh;
 	}
-	.main-ucl {
+	.core-ucl {
 		z-index: -2;
 		min-height: 91.5vh;
 		width: 72%;
@@ -64,10 +70,13 @@
 		height: 100%;
 		display: block;
 		justify-content: center;
+        background-color: rgb(53, 57, 59);
+        padding: 15px;
 	}
 	.crud-control {
 		display: flex;
-		justify-content: space-evenly;
 		align-items: center;
+        margin-block: 10px;
+        position: static;
 	}
 </style>
