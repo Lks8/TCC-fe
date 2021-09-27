@@ -3,7 +3,11 @@
 		<div class="main-program">
 			<Bars />
 			<div class="main-ucl">
-				
+				<div class="crud-control">
+					<b-button variant="info">Criar</b-button>
+                    <b-button variant="danger">Deletar</b-button>
+				</div>
+                <TableUcl />
 			</div>
 		</div>
 	</div>
@@ -11,6 +15,7 @@
 
 <script>
 	import Bars from "../components/Bars/Bars.vue";
+	import TableUcl from "../components/Ucl/TableUcl.vue";
 	export default {
 		data() {
 			return {
@@ -24,6 +29,7 @@
 		},
 		components: {
 			Bars,
+			TableUcl,
 		},
 		methods: {
 			logIn() {
@@ -50,13 +56,18 @@
 	.html {
 		min-height: 100vh;
 	}
-    .main-ucl {
-        z-index: -2;
-        min-height: 91.5vh;
+	.main-ucl {
+		z-index: -2;
+		min-height: 91.5vh;
 		width: 72%;
 		margin: 0 auto;
 		height: 100%;
-        display: block;
-        justify-content: center;
-    }
+		display: block;
+		justify-content: center;
+	}
+	.crud-control {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+	}
 </style>

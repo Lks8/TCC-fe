@@ -41,11 +41,11 @@
         },
 		methods: {
 			redirectToHome() {
-				return this.$router.push("#");
+				return this.$router.push("/");
 			},
             logout() {
 			    localStorage.clear();
-                this.$router.go(0);
+                this.$router.push("/");
 		    },
 		},
 	};

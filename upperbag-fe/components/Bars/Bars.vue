@@ -15,9 +15,12 @@
 		data() {
 			return {
 				items: [],
-				userAdmin: localStorage.getItem("userAdmin"),
+				userAdmin: "",
 			};
 		},
+        mounted() {
+            this.userAdmin = localStorage.getItem("userAdmin");
+        }
 	};
 </script>
 
