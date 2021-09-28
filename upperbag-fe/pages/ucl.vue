@@ -4,16 +4,31 @@
 			<Bars />
 			<div class="core-ucl">
 				<div class="crud-control">
-                    <b-input-group class="search-filter">
-                        <b-input placeholder="Digite o usuário" />
-                        <b-input-group-append>
-                            <b-button><fa icon="search" style="transform: scaleX(-1)" /></b-button>
-                        </b-input-group-append>
-                    </b-input-group>
-                    <b-button variant="danger">Remover usuário</b-button>
+					<b-input-group class="search-filter">
+						<b-form-input
+							id="filter-input"
+							v-model="filter"
+							type="search"
+							placeholder="Digite o usuário"
+						/>
+						<b-input-group-append>
+							<b-button @click="applyFilter"
+								><fa icon="search" style="transform: scaleX(-1)"
+							/></b-button>
+						</b-input-group-append>
+					</b-input-group>
+					<b-button v-if="this.users.length == 1" variant="danger"
+						>Remover selecionado</b-button
+					>
+					<b-button v-if="this.users.length > 1" variant="danger"
+						>Remover selecionados</b-button
+					>
+					<b-button v-if="this.users.length == 1"
+						>Editar selecionado</b-button
+					>
 					<b-button variant="info">Adicionar usuário</b-button>
 				</div>
-                <TableUcl />
+				<TableUcl @selectedUsers="selectedUsers" @applyFilter="applyFilter" />
 			</div>
 		</div>
 	</div>
@@ -23,25 +38,36 @@
 	import Bars from "../components/Bars/Bars.vue";
 	import TableUcl from "../components/Ucl/TableUcl.vue";
 	export default {
+		components: {
+			Bars,
+			TableUcl,
+		},
 		data() {
 			return {
 				isLogged: false,
+				users: "",
+                filter: null,  
 			};
 		},
 		mounted() {
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
-                if(localStorage.getItem("userAdmin")==0){
-                    this.$router.push("/");
-                    //adicionar página de não autorizado
-                }
+				if (localStorage.getItem("userAdmin") == 0) {
+					this.$router.push("/");
+					//adicionar página de não autorizado
+				}
 			} else {
-                this.$router.push("/");
-            }
+				this.$router.push("/");
+			}
 		},
-		components: {
-			Bars,
-			TableUcl,
+		methods: {
+			selectedUsers(selected) {
+				this.users = selected;
+				console.log(this.users);
+			},
+            applyFilter() {
+                console.log("foi")
+            }
 		},
 	};
 </script>
@@ -71,13 +97,13 @@
 		height: 100%;
 		display: block;
 		justify-content: center;
-        background-color: #35393B;
-        padding: 15px;
+		background-color: #35393b;
+		padding: 15px;
 	}
 	.crud-control {
 		display: flex;
 		align-items: center;
-        margin-block: 10px;
-        position: static;
+		margin-block: 10px;
+		position: static;
 	}
 </style>

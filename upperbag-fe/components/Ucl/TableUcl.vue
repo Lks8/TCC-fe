@@ -5,18 +5,31 @@
 			striped
 			hover
 			borderless
+            selectable
 			:items="items"
 			:fields="fields"
 			:busy="isBusy"
+            :filter="filter"
+            select-mode="multi"
+            @row-selected="onRowSelected"
 		>
-			<template #cell(actions)>
-				<b-form-checkbox v-model="selected" :options="items" />
-			</template>
+
 			<template #table-busy>
 				<div class="text-center my-2">
 					<b-spinner class="align-middle"></b-spinner>
 					<strong>Carregando...</strong>
 				</div>
+			</template>
+
+			<template #cell(actions)="{ rowSelected }">
+				<template v-if="rowSelected">
+					<span aria-hidden="true">&check;</span>
+					<span class="sr-only">Selected</span>
+				</template>
+				<template v-else>
+					<span aria-hidden="true">&nbsp;</span>
+					<span class="sr-only">Not selected</span>
+				</template>
 			</template>
 		</b-table>
 	</div>
@@ -32,11 +45,21 @@
 					{ key: "email", label: "Email" },
 					{ key: "isAdmin", label: "Administrador" },
 				],
-				items: [],
+                items: [],
 				selected: [],
 				isBusy: true,
+                filter: null,
 			};
 		},
+        methods: {
+            onRowSelected(items) {
+                this.selected = items
+                this.$emit("selectedUsers",this.selected);
+            },
+            applyFilter(filter) {
+                this.filter = filter
+            }
+        },
 		mounted() {
 			this.$axios.setToken(localStorage.getItem("authToken"), "Bearer");
 			this.$axios
@@ -48,9 +71,11 @@
 						value.isAdmin = value.isAdmin ? "Sim" : "Não";
 					}
 					this.items = res;
+					this.options = this.items;
 				})
 				.catch((error) => {
-					console.log(error);
+					localStorage.clear();
+					this.$router.push("/");
 				});
 			this.isBusy = false;
 		},
