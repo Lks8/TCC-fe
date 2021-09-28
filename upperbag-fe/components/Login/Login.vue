@@ -3,7 +3,11 @@
 		<div class="modal" v-if="forgotPassword">
 			<Password @closeModal="closeModal()" @recoverSent="recoverSent" />
 		</div>
-		<div class="core" v-bind:class="{ active: !isActive }">
+		<div class="text-center my-2" style="color:white" v-if="!loaded">
+			<b-spinner class="align-middle"></b-spinner>
+			<strong>Carregando...</strong>
+		</div>
+		<div class="core" v-else v-bind:class="{ active: !isActive }">
 			<div class="logo">
 				<img :src="require(`@/static/logo.png`)" alt="logo" />
 			</div>
@@ -63,6 +67,7 @@
 				loginError: false,
 				user: null,
 				token: "",
+				loaded: false,
 			};
 		},
 		components: {
@@ -71,6 +76,7 @@
 		},
 		methods: {
 			async login() {
+				this.loaded = false;
 				const mandatoryCharacter = "@";
 				if (
 					this.userLogin !== "" &&
@@ -79,6 +85,7 @@
 					this.loginError = false;
 				} else {
 					this.loginError = true;
+					this.loaded = true;
 					return false;
 				}
 				await this.$axios
@@ -89,13 +96,14 @@
 						this.user = response.user;
 						this.token = response.token;
 						this.loginError = false;
-                        this.storeData(this.token, this.user);
+						this.storeData(this.token, this.user);
 						this.$emit("clicked");
 					})
 					.catch((error) => {
 						console.log("cai aqui", error);
 						this.loginError = true;
 					});
+				this.loaded = true;
 			},
 			recoverPassword() {
 				this.isActive = false;
@@ -114,14 +122,17 @@
 				);
 				this.loginError = false;
 			},
-            storeData(token, user) {
+			storeData(token, user) {
 				if (process.client) {
 					localStorage.setItem("authToken", token);
-                    localStorage.setItem("userName", user.name);
-                    localStorage.setItem("userEmail", user.email);
-                    localStorage.setItem("userAdmin", user.isAdmin);
+					localStorage.setItem("userName", user.name);
+					localStorage.setItem("userEmail", user.email);
+					localStorage.setItem("userAdmin", user.isAdmin);
 				}
 			},
+		},
+		mounted() {
+			this.loaded = true;
 		},
 	};
 </script>

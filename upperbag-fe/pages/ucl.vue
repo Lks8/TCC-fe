@@ -7,7 +7,7 @@
                     <b-input-group class="search-filter">
                         <b-input placeholder="Digite o usuário" />
                         <b-input-group-append>
-                            <b-button><fa icon="search" /></b-button>
+                            <b-button><fa icon="search" style="transform: scaleX(-1)" /></b-button>
                         </b-input-group-append>
                     </b-input-group>
                     <b-button variant="danger">Remover usuário</b-button>
@@ -31,16 +31,17 @@
 		mounted() {
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
-			}
+                if(localStorage.getItem("userAdmin")==0){
+                    this.$router.push("/");
+                    //adicionar página de não autorizado
+                }
+			} else {
+                this.$router.push("/");
+            }
 		},
 		components: {
 			Bars,
 			TableUcl,
-		},
-		methods: {
-			logIn() {
-				this.isLogged = true;
-			},
 		},
 	};
 </script>
@@ -70,7 +71,7 @@
 		height: 100%;
 		display: block;
 		justify-content: center;
-        background-color: rgb(53, 57, 59);
+        background-color: #35393B;
         padding: 15px;
 	}
 	.crud-control {

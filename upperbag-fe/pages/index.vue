@@ -4,7 +4,7 @@
 			<Login @clicked="logIn" />
 		</div>
 		<div class="main-program" v-else>
-            <Bars />
+			<Bars />
 			<Dashboard />
 		</div>
 	</div>
@@ -13,7 +13,7 @@
 <script>
 	import Login from "../components/Login/Login.vue";
 	import Dashboard from "../components/Dashboard/Dashboard.vue";
-    import Bars from "../components/Bars/Bars.vue";
+	import Bars from "../components/Bars/Bars.vue";
 
 	export default {
 		data() {
@@ -29,7 +29,7 @@
 		components: {
 			Login,
 			Dashboard,
-            Bars,
+			Bars,
 		},
 		methods: {
 			logIn() {

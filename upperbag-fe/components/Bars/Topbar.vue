@@ -25,7 +25,7 @@
 				</template>
 				<b-dropdown-item @click="logout">
                     Sair
-                    <fa class="icon" icon="sign-out-alt"/>
+                    <fa class="icon" icon="sign-out-alt" />
                 </b-dropdown-item>
 			</b-dropdown>
 		</div>
@@ -36,18 +36,22 @@
 	export default {
         data() {
             return {
-                userName: localStorage.getItem("userName")
+                userName: "",
             }
         },
 		methods: {
 			redirectToHome() {
-				return this.$router.push("/");
+                this.$router.go(0);
+				this.$router.push("/");
 			},
             logout() {
 			    localStorage.clear();
-                this.$router.push("/");
+                this.redirectToHome();
 		    },
 		},
+        mounted() {
+            this.userName = localStorage.getItem("userName");
+        }
 	};
 </script>
 

@@ -50,7 +50,7 @@
                     <b-input-group class="search-filter">
                         <b-input placeholder="Digite o filtro desejado" />
                         <b-input-group-append>
-                            <b-button><fa icon="search" /></b-button>
+                            <b-button><fa icon="search" style="transform: scaleX(-1)" key="" /></b-button>
                         </b-input-group-append>
                     </b-input-group>
                     <b-button class="apply-preset" variant="success"><fa icon="plus" /></b-button>
