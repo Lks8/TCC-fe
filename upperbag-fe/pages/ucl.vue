@@ -26,9 +26,17 @@
 					<b-button v-if="this.users.length == 1"
 						>Editar selecionado</b-button
 					>
-					<b-button variant="info">Adicionar usuário</b-button>
+					<b-button variant="info" @click="openModal"
+						>Adicionar usuário</b-button
+					>
 				</div>
-				<TableUcl @selectedUsers="selectedUsers" @applyFilter="applyFilter" />
+				<TableUcl
+					@selectedUsers="selectedUsers"
+					@applyFilter="applyFilter"
+				/>
+				<div class="modal-create-user" v-if="this.modalCreateUser">
+					<CreateUser />
+				</div>
 			</div>
 		</div>
 	</div>
@@ -37,16 +45,19 @@
 <script>
 	import Bars from "../components/Bars/Bars.vue";
 	import TableUcl from "../components/Ucl/TableUcl.vue";
+	import CreateUser from "../components/Ucl/CreateUser.vue";
 	export default {
 		components: {
 			Bars,
 			TableUcl,
+			CreateUser,
 		},
 		data() {
 			return {
 				isLogged: false,
 				users: "",
-                filter: null,  
+				filter: null,
+				modalCreateUser: false,
 			};
 		},
 		mounted() {
@@ -65,9 +76,12 @@
 				this.users = selected;
 				console.log(this.users);
 			},
-            applyFilter() {
-                console.log("foi")
-            }
+			applyFilter() {
+				console.log("foi");
+			},
+			openModal() {
+				this.modalCreateUser = true;
+			},
 		},
 	};
 </script>
@@ -105,5 +119,16 @@
 		align-items: center;
 		margin-block: 10px;
 		position: static;
+	}
+	.modal-create-user {
+		z-index: 5;
+		position: absolute;
+		width: auto;
+		height: auto;
+		top: 24vh;
+        left: 36vw;
+		display: flex;
+		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
+        border-radius: 10px;
 	}
 </style>
