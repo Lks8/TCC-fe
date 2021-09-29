@@ -72,6 +72,7 @@
 					}
 					this.items = res;
 					this.options = this.items;
+                    console.log(res)
 				})
 				.catch((error) => {
 					localStorage.clear();

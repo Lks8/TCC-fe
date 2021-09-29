@@ -2,7 +2,7 @@
 	<div>
 		<header class="topbar"><Topbar /></header>
 		<div class="sidebar">
-			<Sidebar v-if="this.userAdmin" />
+			<Sidebar v-if="this.userAdmin!=0" />
 		</div>
 	</div>
 </template>
@@ -15,7 +15,7 @@
 		data() {
 			return {
 				items: [],
-				userAdmin: "",
+				userAdmin: 0,
 			};
 		},
         mounted() {
