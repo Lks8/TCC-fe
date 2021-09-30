@@ -10,7 +10,7 @@
 			:fields="fields"
 			:busy="isBusy"
             :filter="filter"
-            select-mode="multi"
+            select-mode="single"
             @row-selected="onRowSelected"
 		>
 
@@ -54,7 +54,7 @@
         methods: {
             onRowSelected(items) {
                 this.selected = items
-                this.$emit("selectedUsers",this.selected);
+                this.$emit("selectedUser",this.selected);
             },
             applyFilter(filter) {
                 this.filter = filter
@@ -72,7 +72,6 @@
 					}
 					this.items = res;
 					this.options = this.items;
-                    console.log(res)
 				})
 				.catch((error) => {
 					localStorage.clear();

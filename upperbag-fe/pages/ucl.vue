@@ -17,25 +17,33 @@
 							/></b-button>
 						</b-input-group-append>
 					</b-input-group>
-					<b-button v-if="this.users.length == 1" variant="danger"
+					<b-button
+						v-if="this.user.length == 1"
+						variant="danger"
+						@click="openModalRemoveUser"
 						>Remover selecionado</b-button
 					>
-					<b-button v-if="this.users.length > 1" variant="danger"
-						>Remover selecionados</b-button
-					>
-					<b-button v-if="this.users.length == 1"
+					<b-button
+						v-if="this.user.length == 1"
+						@click="openModalUpdateUser"
 						>Editar selecionado</b-button
 					>
-					<b-button variant="info" @click="openModal"
+					<b-button variant="info" @click="openModalCreateUser"
 						>Adicionar usuário</b-button
 					>
 				</div>
 				<TableUcl
-					@selectedUsers="selectedUsers"
+					@selectedUser="selectedUser"
 					@applyFilter="applyFilter"
 				/>
-				<div class="modal-create-user" v-if="this.modalCreateUser">
-					<CreateUser />
+				<div class="modal-user" v-if="this.modalCreateUser">
+					<CreateUser @closeModal="closeModal" />
+				</div>
+				<div class="modal-user" v-if="this.modalUpdateUser">
+					<UpdateUser :user="user" @closeModal="closeModal" />
+				</div>
+				<div class="modal-user" v-if="this.modalRemoveUser">
+					<DeleteUser :user="user" @closeModal="closeModal" />
 				</div>
 			</div>
 		</div>
@@ -46,18 +54,24 @@
 	import Bars from "../components/Bars/Bars.vue";
 	import TableUcl from "../components/Ucl/TableUcl.vue";
 	import CreateUser from "../components/Ucl/CreateUser.vue";
+	import DeleteUser from "../components/Ucl/DeleteUser.vue";
+	import UpdateUser from "../components/Ucl/UpdateUser.vue";
 	export default {
 		components: {
 			Bars,
 			TableUcl,
 			CreateUser,
+			DeleteUser,
+			UpdateUser,
 		},
 		data() {
 			return {
 				isLogged: false,
-				users: "",
+				user: "",
 				filter: null,
 				modalCreateUser: false,
+                modalUpdateUser: false,
+				modalRemoveUser: false,
 			};
 		},
 		mounted() {
@@ -72,15 +86,25 @@
 			}
 		},
 		methods: {
-			selectedUsers(selected) {
-				this.users = selected;
-				console.log(this.users);
+			selectedUser(selected) {
+				this.user = selected;
+			},
+			openModalCreateUser() {
+				this.modalCreateUser = true;
+			},
+            openModalUpdateUser() {
+				this.modalUpdateUser = true;
+			},
+			openModalRemoveUser() {
+				this.modalRemoveUser = true;
+			},
+			closeModal() {
+				this.modalCreateUser = false;
+                this.modalUpdateUser = false;
+				this.modalRemoveUser = false;
 			},
 			applyFilter() {
-				console.log("foi");
-			},
-			openModal() {
-				this.modalCreateUser = true;
+				console.log("yep");
 			},
 		},
 	};
@@ -120,15 +144,15 @@
 		margin-block: 10px;
 		position: static;
 	}
-	.modal-create-user {
+	.modal-user {
 		z-index: 5;
 		position: absolute;
 		width: auto;
 		height: auto;
 		top: 24vh;
-        left: 36vw;
+		left: 36vw;
 		display: flex;
 		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
-        border-radius: 10px;
+		border-radius: 10px;
 	}
 </style>

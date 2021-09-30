@@ -5,17 +5,13 @@
 			<p>Nome:</p>
 			<b-form-input
 				v-model="user.name"
+                value="porra"
 				placeholder="Insira o nome completo do usuário"
 			/>
 			<p>Email:</p>
 			<b-form-input
 				v-model="user.email"
 				placeholder="Insira o email do usuário"
-			/>
-			<p>Senha:</p>
-			<b-form-input
-				v-model="user.password"
-				placeholder="Insira a senha do usuário"
 			/>
 			<p>O usuário terá permissões de administrador?</p>
 			<b-form-select v-model="user.isAdmin" :options="options" />
@@ -24,8 +20,8 @@
 				alertType="fail"
 				alertMessage="Preencha todos os campos apropriadamente"
 			/>
-			<b-button class="add-user-button" variant="info" @click="createUser"
-				>Adicionar usuário</b-button
+			<b-button class="add-user-button" variant="info" @click="updateUser"
+				>Atualizar usuário</b-button
 			>
 		</b-container>
 	</div>
@@ -42,10 +38,9 @@
 				hasError: false,
 				user: [
 					{
-						name: "",
-						email: "",
-						password: "",
-						isAdmin: 0,
+                        email: this.$attrs.user[0].email,
+						name: this.$attrs.user[0].name,
+						isAdmin: this.$attrs.user[0].isAdmin,
 					},
 				],
 				options: [
@@ -65,15 +60,13 @@
             closeModal() {
                 this.$emit("closeModal");
             },
-			async createUser() {
+			async updateUser() {
 				if (
 					this.user.name == undefined ||
 					this.user.email == undefined ||
-					this.user.password == undefined ||
 					this.user.isAdmin == undefined ||
 					this.user.name == "" ||
 					this.user.email == "" ||
-					this.user.password == "" ||
 					!this.user.email.includes("@")
 				) {
 					this.hasError = true;
@@ -84,12 +77,11 @@
 					"Bearer"
 				);
 				await this.$axios
-					.$post(
+					.$put(
 						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/`,
 						{
 							name: this.user.name,
 							email: this.user.email,
-							password: this.user.password,
 							isAdmin: this.user.isAdmin,
 						}
 					)
