@@ -22,6 +22,16 @@
 			};
 		},
 		mounted() {
+            this.$axios.setToken(localStorage.getItem("authToken"), "Bearer");
+			this.$axios
+				.$get(
+					`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/`
+				)
+                .catch((error) => {
+					localStorage.clear();
+                    this.isLogged = false
+					this.$router.push("/");
+				});
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
 			}

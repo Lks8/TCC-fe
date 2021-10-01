@@ -1,17 +1,13 @@
 <template>
 	<div>
-		<b-container class="create-user-core">
+		<b-container class="update-user-core">
 			<b-button-close class="close" @click="closeModal" />
+            <h4>Atualizar usuário</h4>
 			<p>Nome:</p>
 			<b-form-input
 				v-model="user.name"
-                value="porra"
+				value="porra"
 				placeholder="Insira o nome completo do usuário"
-			/>
-			<p>Email:</p>
-			<b-form-input
-				v-model="user.email"
-				placeholder="Insira o email do usuário"
 			/>
 			<p>O usuário terá permissões de administrador?</p>
 			<b-form-select v-model="user.isAdmin" :options="options" />
@@ -20,7 +16,7 @@
 				alertType="fail"
 				alertMessage="Preencha todos os campos apropriadamente"
 			/>
-			<b-button class="add-user-button" variant="info" @click="updateUser"
+			<b-button class="update-user-button" variant="info" @click="updateUser"
 				>Atualizar usuário</b-button
 			>
 		</b-container>
@@ -38,7 +34,7 @@
 				hasError: false,
 				user: [
 					{
-                        email: this.$attrs.user[0].email,
+						email: this.$attrs.user[0].email,
 						name: this.$attrs.user[0].name,
 						isAdmin: this.$attrs.user[0].isAdmin,
 					},
@@ -57,17 +53,14 @@
 			};
 		},
 		methods: {
-            closeModal() {
-                this.$emit("closeModal");
-            },
+			closeModal() {
+				this.$emit("closeModal");
+			},
 			async updateUser() {
 				if (
 					this.user.name == undefined ||
-					this.user.email == undefined ||
 					this.user.isAdmin == undefined ||
-					this.user.name == "" ||
-					this.user.email == "" ||
-					!this.user.email.includes("@")
+					this.user.name == ""
 				) {
 					this.hasError = true;
 					return;
@@ -76,15 +69,20 @@
 					localStorage.getItem("authToken"),
 					"Bearer"
 				);
+                console.log(
+							this.user
+                )
 				await this.$axios
-					.$put(
-						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/`,
-						{
+					.$request({
+                        method: "put",
+						url:
+							"http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/",
+						data: {
 							name: this.user.name,
-							email: this.user.email,
-							isAdmin: this.user.isAdmin,
-						}
-					)
+							email: this.user[0].email,
+							isAdmin: this.user.isAdmin
+						},
+					})
 					.then((response) => {
 						console.log(response);
 						// this.$emit("clicked");
@@ -101,7 +99,7 @@
 
 <style>
 	@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
-	.create-user-core {
+	.update-user-core {
 		font-family: "Rubik", "sans-serif";
 		color: black;
 		background-color: #d2d3d4;
@@ -110,19 +108,24 @@
 		border-radius: 10px;
 		padding: 15px;
 	}
-	.create-user-core > p {
+	.update-user-core > p {
 		margin-bottom: 0;
 		margin-top: 10px;
 		margin-inline: 10px;
 	}
-	.create-user-core > input {
+	.update-user-core > input {
 		padding-inline: 10px;
 	}
-	.close {
-		position: absolute;
-		right: 15px;
+    .update-user-core > h4 {
+		text-align: center;
+        margin: 0;
 	}
-	.add-user-button {
+	.update-user-core > .close {
+		position: absolute;
+        top: 5px;
+		right: 10px;
+	}
+	.update-user-button {
 		margin-top: 10px;
 	}
 </style>

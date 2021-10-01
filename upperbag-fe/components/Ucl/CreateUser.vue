@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<b-container class="create-user-core">
+            <h4>Criar usuário</h4>
 			<b-button-close class="close" @click="closeModal" />
 			<p>Nome:</p>
 			<b-form-input
@@ -123,12 +124,17 @@
 		margin-top: 10px;
 		margin-inline: 10px;
 	}
+    .create-user-core > h4 {
+		text-align: center;
+        margin: 0;
+	}
 	.create-user-core > input {
 		padding-inline: 10px;
 	}
-	.close {
+	.create-user-core > .close {
 		position: absolute;
-		right: 15px;
+        top: 5px;
+		right: 10px;
 	}
 	.add-user-button {
 		margin-top: 10px;

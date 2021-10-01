@@ -22,7 +22,7 @@
 			return {
 				user: [
 					{
-                        email: this.$attrs.user[0].email,
+						email: this.$attrs.user[0].email,
 						name: this.$attrs.user[0].name,
 						isAdmin: this.$attrs.user[0].isAdmin,
 					},
@@ -34,32 +34,33 @@
 				this.$emit("closeModal");
 			},
 			async removeUser() {
-                if(this.user[0].isAdmin=="Sim") {
-                    this.user[0].isAdmin=1;
-                } else {
-                    this.user[0].isAdmin=0;
-                }
+				if (this.user[0].isAdmin == "Sim") {
+					this.user[0].isAdmin = 1;
+				} else {
+					this.user[0].isAdmin = 0;
+				}
 				this.$axios.setToken(
 					localStorage.getItem("authToken"),
 					"Bearer"
 				);
 				await this.$axios
-					.$request(
-                        {method: "delete",
-						url: "http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/",
+					.$request({
+						method: "delete",
+						url:
+							"http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/",
 						data: {
 							email: this.user[0].email,
 							name: this.user[0].name,
 							isAdmin: this.user[0].isAdmin,
-						}}
-					)
+						},
+					})
 					.then((response) => {
 						// this.$emit("clicked");
-                        this.$router.go(0);
+						this.$router.go(0);
 					})
 					.catch((error) => {
 						console.log("cai aqui", error);
-                        this.closeModal();
+						this.closeModal();
 					});
 			},
 		},
@@ -78,16 +79,17 @@
 		padding: 15px;
 	}
 	.remove-user-core > p {
-		margin-bottom: 0;
-		margin-top: 10px;
-		margin-inline: 10px;
+		margin: 0;
+        padding-inline: 15px;
+        font-weight: bold;
 	}
 	.remove-user-core > input {
 		padding-inline: 10px;
 	}
-	.close {
+	.remove-user-core > .close {
 		position: absolute;
-		right: 15px;
+		right: 10px;
+        top: 5px;
 	}
 	.add-user-button {
 		margin-top: 10px;
