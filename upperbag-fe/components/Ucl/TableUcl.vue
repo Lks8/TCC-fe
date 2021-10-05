@@ -93,4 +93,15 @@
 		background-color: #d2d3d4;
 		border: 1px solid black;
 	}
+    .table.b-table > tbody > .table-active {
+        color: white;
+        background-color: #d77f59;
+    }
+    .table.b-table.table-hover > tbody > tr.table-active:hover td {
+        color: white;
+    }
+    .table-hover tbody tr:hover {
+        background-color:rgba(0, 0, 0, 0.1);
+        transition: 0.3s;
+    }
 </style>

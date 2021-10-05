@@ -24,23 +24,26 @@
 								/></b-button>
 							</b-input-group-append>
 						</b-input-group>
-						<b-button
-							v-if="
-								this.user.length == 1 &&
-									this.loggedUser != this.user[0].name
-							"
-							variant="danger"
-							@click="openModalRemoveUser"
-							>Remover selecionado</b-button
-						>
-						<b-button
-							v-if="this.user.length == 1"
-							@click="openModalUpdateUser"
-							>Editar selecionado</b-button
-						>
-						<b-button variant="info" @click="openModalCreateUser"
-							>Adicionar usuário</b-button
-						>
+                        <span class="crud-buttons-organizer">
+                            <b-button
+                                v-if="
+                                    this.user.length == 1 &&
+                                        this.loggedUser != this.user[0].name
+                                "
+                                variant="danger"
+                                @click="openModalRemoveUser"
+                                >Remover selecionado</b-button
+                            >
+                            <b-button
+                                variant="secondary"
+                                v-if="this.user.length == 1"
+                                @click="openModalUpdateUser"
+                                >Editar selecionado</b-button
+                            >
+                            <b-button variant="info" @click="openModalCreateUser"
+                                >Adicionar usuário</b-button
+                            >
+                        </span>
 					</div>
 					<TableUcl
 						@selectedUser="selectedUser"
@@ -129,9 +132,9 @@
 <style scoped>
 	@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 	.main-program {
-		background-color: #252829;
+        background-color: #252829;
 		background: linear-gradient(
-			0deg,
+            0deg,
 			rgba(24, 26, 27, 1) 0%,
 			rgba(53, 57, 59, 1) 100%
 		);
@@ -141,8 +144,13 @@
 	}
 
 	.html {
-		min-height: 100vh;
+        min-height: 100vh;
 	}
+    .loading {
+        position: absolute;
+        top: 9vh;
+        left: 47vw;
+    }
 	.core-ucl {
 		z-index: -2;
 		min-height: 91.5vh;
@@ -156,10 +164,14 @@
 	}
 	.crud-control {
 		display: flex;
-		align-items: center;
+		align-items: stretch;
+        justify-content: space-between;
 		margin-block: 10px;
 		position: static;
 	}
+    .button-crud-organizer > .btn {
+        padding: 5px;
+    }
 	.modal-user {
 		z-index: 5;
 		position: absolute;
@@ -171,10 +183,39 @@
 		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
 		border-radius: 10px;
 	}
-    .loading {
-        position: absolute;
-        top: 9vh;
-        left: 47vw;
-
+    .button-crud-organizer {
+        width: 50%;
+    }
+    .input-group > .form-control {
+        height: 100%;
+        width: auto;
+    }
+    .input-group {
+        width: 50%;
+    }
+    .btn-danger {
+        background-color:#ff3334;
+        border: none;
+    }
+    .btn-danger:hover {
+        background-color: #cd192b;
+    }
+    .btn-info {
+        background-color: #d77f59;
+        border: none;
+    }
+    .btn-info:hover {
+        background-color: #cc6031;
+    }
+    .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled):active:focus  {
+        background-color: #c24914;
+        box-shadow: 0 0 0 0.2rem#838486;
+    }
+    .btn-secondary {
+        background-color: #838486;
+        border: none;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
     }
 </style>
