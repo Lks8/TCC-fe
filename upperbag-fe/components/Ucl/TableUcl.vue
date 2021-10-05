@@ -58,6 +58,7 @@
             },
             applyFilter(filter) {
                 this.filter = filter
+                console.log("uhul")
             }
         },
 		mounted() {

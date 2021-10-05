@@ -1,49 +1,60 @@
 <template>
 	<div class="html">
 		<div class="main-program">
-			<Bars />
-			<div class="core-ucl">
-				<div class="crud-control">
-					<b-input-group class="search-filter">
-						<b-form-input
-							id="filter-input"
-							v-model="filter"
-							type="search"
-							placeholder="Digite o usuário"
-						/>
-						<b-input-group-append>
-							<b-button @click="applyFilter"
-								><fa icon="search" style="transform: scaleX(-1)"
-							/></b-button>
-						</b-input-group-append>
-					</b-input-group>
-					<b-button
-						v-if="this.user.length == 1"
-						variant="danger"
-						@click="openModalRemoveUser"
-						>Remover selecionado</b-button
-					>
-					<b-button
-						v-if="this.user.length == 1"
-						@click="openModalUpdateUser"
-						>Editar selecionado</b-button
-					>
-					<b-button variant="info" @click="openModalCreateUser"
-						>Adicionar usuário</b-button
-					>
-				</div>
-				<TableUcl
-					@selectedUser="selectedUser"
-					@applyFilter="applyFilter"
-				/>
-				<div class="modal-user" v-if="this.modalCreateUser">
-					<CreateUser @closeModal="closeModal" />
-				</div>
-				<div class="modal-user" v-if="this.modalUpdateUser">
-					<UpdateUser :user="user" @closeModal="closeModal" />
-				</div>
-				<div class="modal-user" v-if="this.modalRemoveUser">
-					<DeleteUser :user="user" @closeModal="closeModal" />
+			<div class="loading text-center my-2" style="color:white" v-if="!loaded">
+				<b-spinner class="align-middle"></b-spinner>
+				<strong>Carregando...</strong>
+			</div>
+			<div v-else>
+				<Bars />
+				<div class="core-ucl">
+					<div class="crud-control">
+						<b-input-group class="search-filter">
+							<b-form-input
+								id="filter-input"
+								v-model="filter"
+								type="search"
+								placeholder="Digite o usuário"
+							/>
+							<b-input-group-append>
+								<b-button @click="applyFilter"
+									><fa
+										icon="search"
+										style="transform: scaleX(-1)"
+								/></b-button>
+							</b-input-group-append>
+						</b-input-group>
+						<b-button
+							v-if="
+								this.user.length == 1 &&
+									this.loggedUser != this.user[0].name
+							"
+							variant="danger"
+							@click="openModalRemoveUser"
+							>Remover selecionado</b-button
+						>
+						<b-button
+							v-if="this.user.length == 1"
+							@click="openModalUpdateUser"
+							>Editar selecionado</b-button
+						>
+						<b-button variant="info" @click="openModalCreateUser"
+							>Adicionar usuário</b-button
+						>
+					</div>
+					<TableUcl
+						@selectedUser="selectedUser"
+						@applyFilter="applyFilter"
+					/>
+					<div class="modal-user" v-if="this.modalCreateUser">
+						<CreateUser @closeModal="closeModal" />
+					</div>
+					<div class="modal-user" v-if="this.modalUpdateUser">
+						<UpdateUser :user="user" @closeModal="closeModal" />
+					</div>
+					<div class="modal-user" v-if="this.modalRemoveUser">
+						<DeleteUser :user="user" @closeModal="closeModal" />
+					</div>
 				</div>
 			</div>
 		</div>
@@ -68,19 +79,24 @@
 			return {
 				isLogged: false,
 				user: "",
-				filter: null,
+				filter: "",
 				modalCreateUser: false,
-                modalUpdateUser: false,
+				modalUpdateUser: false,
 				modalRemoveUser: false,
+				loggedUser: "",
+				loaded: false,
 			};
 		},
 		mounted() {
+			this.loaded = false;
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
+				this.loggedUser = localStorage.getItem("userName");
 				if (localStorage.getItem("userAdmin") == 0) {
 					this.$router.push("/");
 					//adicionar página de não autorizado
 				}
+                this.loaded = true;
 			} else {
 				this.$router.push("/");
 			}
@@ -92,7 +108,7 @@
 			openModalCreateUser() {
 				this.modalCreateUser = true;
 			},
-            openModalUpdateUser() {
+			openModalUpdateUser() {
 				this.modalUpdateUser = true;
 			},
 			openModalRemoveUser() {
@@ -100,7 +116,7 @@
 			},
 			closeModal() {
 				this.modalCreateUser = false;
-                this.modalUpdateUser = false;
+				this.modalUpdateUser = false;
 				this.modalRemoveUser = false;
 			},
 			applyFilter() {
@@ -155,4 +171,10 @@
 		box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.7);
 		border-radius: 10px;
 	}
+    .loading {
+        position: absolute;
+        top: 9vh;
+        left: 47vw;
+
+    }
 </style>

@@ -31,14 +31,27 @@
 			closeModal() {
 				this.$emit("closeModal");
 			},
-			recoverSent() {
+			async recoverSent() {
                 const mandatoryCharacter = '@';
 				if (this.message !== "" && this.message.includes(mandatoryCharacter)) {
                     this.$emit("recoverSent", this.message);
 				} else {
                     this.hasError = true;
                 }
-				
+                await this.$axios
+					.$post(
+						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/ResetPassword?email=${this.message}`
+					)
+					.then((response) => {
+                        console.log("respondeu:",response)
+						this.hasError = false;
+						this.$emit("clicked");
+					})
+					.catch((error) => {
+						console.log("cai aqui", error);
+						this.hasError = true;
+					});
+				this.loaded = true;
 			},
 		},
 	};

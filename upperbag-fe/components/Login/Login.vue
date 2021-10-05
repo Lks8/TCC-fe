@@ -149,6 +149,7 @@
 	.core {
 		text-align: center;
 	}
+    
 	.core.active {
 		pointer-events: none;
 	}
