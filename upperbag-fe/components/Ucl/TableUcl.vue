@@ -40,15 +40,15 @@
 		data() {
 			return {
 				fields: [
-					{ key: "actions", label: "Selecionar usuário" },
+					{ key: "actions", label: "Selecionar usuário", class: "actions" },
 					{ key: "name", label: "Nome" },
 					{ key: "email", label: "Email" },
-					{ key: "isAdmin", label: "Administrador" },
+					{ key: "isAdmin", label: "Administrador", class: "admins" },
 				],
                 items: [],
 				selected: [],
 				isBusy: true,
-                filter: null,
+                filter: "",
 			};
 		},
         methods: {
@@ -56,7 +56,7 @@
                 this.selected = items
                 this.$emit("selectedUser",this.selected);
             },
-            applyFilter(filter) {
+            applyFilter() {
                 this.filter = filter
                 console.log("uhul")
             }
@@ -103,5 +103,11 @@
     .table-hover tbody tr:hover {
         background-color:rgba(0, 0, 0, 0.1);
         transition: 0.3s;
+    }
+    .actions {
+        max-width: 13%;
+    }
+    .admins {
+        max-width: 15%;
     }
 </style>

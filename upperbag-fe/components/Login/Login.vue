@@ -100,6 +100,7 @@
 						this.$emit("clicked");
 					})
 					.catch((error) => {
+                        console.clear();
 						console.log("cai aqui", error);
 						this.loginError = true;
 					});

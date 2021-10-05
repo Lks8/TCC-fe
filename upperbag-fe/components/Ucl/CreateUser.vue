@@ -138,5 +138,16 @@
 	}
 	.add-user-button {
 		margin-top: 10px;
+        background-color: #d77f59;
+        border: none;
+	}
+    .add-user-button:hover, .add-user-button:focus {
+        background-color: #cc6031;
+        border: none;
+	}
+    .btn-info:not(:disabled):not(.disabled):active {
+        background-color: #c24914;
+        border: none;
+        box-shadow: 0 0 0 0.2rem#838486;
 	}
 </style>

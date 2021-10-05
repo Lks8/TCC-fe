@@ -3,11 +3,11 @@
 		<b-container class="remove-user-core">
 			<b-button-close class="close" @click="closeModal" />
 			<p>Deseja remover o usuário {{ user[0].name }}?</p>
-			<b-button class="add-user-button" variant="info" @click="removeUser"
+			<b-button class="delete-user-button" variant="info" @click="removeUser"
 				>Sim</b-button
 			>
 			<b-button
-				class="add-user-button"
+				class="dont-delete-user-button"
 				variant="danger"
 				@click="closeModal"
 				>Não</b-button
@@ -74,6 +74,7 @@
 		color: black;
 		background-color: #d2d3d4;
 		display: flex;
+        align-items: center;
 		flex-direction: column;
 		border-radius: 10px;
 		padding: 15px;
@@ -91,7 +92,30 @@
 		right: 10px;
         top: 5px;
 	}
-	.add-user-button {
+    .delete-user-button {
 		margin-top: 10px;
+        background-color: #d77f59;
+        border: none;
+        width: min-content;
+        text-align: center;
+        padding-inline: 30px;
 	}
+    .delete-user-button:hover, .delete-user-button:focus {
+        background-color: #cc6031;
+        border: none;
+	}
+    .btn-info:not(:disabled):not(.disabled):active {
+        background-color: #c24914;
+        border: none;
+        box-shadow: 0 0 0 0.2rem#838486;
+	}
+    .dont-delete-user-button {
+        padding-inline: 30px;
+        margin-top: 10px;
+        background-color: #838486;
+        border: none;
+    }
+    .dont-delete-user-button:hover {
+        background-color: #5a6268;
+    }
 </style>

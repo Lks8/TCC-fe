@@ -17,7 +17,7 @@
 								placeholder="Digite o usuário"
 							/>
 							<b-input-group-append>
-								<b-button @click="applyFilter"
+								<b-button @click="filter"
 									><fa
 										icon="search"
 										style="transform: scaleX(-1)"
@@ -47,7 +47,7 @@
 					</div>
 					<TableUcl
 						@selectedUser="selectedUser"
-						@applyFilter="applyFilter"
+                        filter="filter"
 					/>
 					<div class="modal-user" v-if="this.modalCreateUser">
 						<CreateUser @closeModal="closeModal" />
@@ -96,8 +96,7 @@
 				this.isLogged = true;
 				this.loggedUser = localStorage.getItem("userName");
 				if (localStorage.getItem("userAdmin") == 0) {
-					this.$router.push("/");
-					//adicionar página de não autorizado
+					this.$router.push("/unauthorized");
 				}
                 this.loaded = true;
 			} else {
@@ -121,9 +120,6 @@
 				this.modalCreateUser = false;
 				this.modalUpdateUser = false;
 				this.modalRemoveUser = false;
-			},
-			applyFilter() {
-				console.log("yep");
 			},
 		},
 	};
@@ -191,7 +187,7 @@
         width: auto;
     }
     .input-group {
-        width: 50%;
+        width: 35%;
     }
     .btn-danger {
         background-color:#ff3334;
