@@ -17,7 +17,7 @@
 								placeholder="Digite o usuário"
 							/>
 							<b-input-group-append>
-								<b-button @click="filter"
+								<b-button v-on:click="$emit('apply-filter')"
 									><fa
 										icon="search"
 										style="transform: scaleX(-1)"
@@ -47,7 +47,8 @@
 					</div>
 					<TableUcl
 						@selectedUser="selectedUser"
-                        filter="filter"
+                        v-on:apply-filter="apply-filter"
+                        :filter="filter"
 					/>
 					<div class="modal-user" v-if="this.modalCreateUser">
 						<CreateUser @closeModal="closeModal" />
@@ -90,8 +91,10 @@
 				loaded: false,
 			};
 		},
+        beforeMount() {
+            this.loaded = false;
+        },
 		mounted() {
-			this.loaded = false;
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
 				this.loggedUser = localStorage.getItem("userName");
@@ -121,6 +124,9 @@
 				this.modalUpdateUser = false;
 				this.modalRemoveUser = false;
 			},
+            applyFilter() {
+                console.log("VAIPORAR")
+            }
 		},
 	};
 </script>

@@ -48,7 +48,7 @@
                 items: [],
 				selected: [],
 				isBusy: true,
-                filter: "",
+                filter: this.$attrs.filter,
 			};
 		},
         methods: {
@@ -57,8 +57,7 @@
                 this.$emit("selectedUser",this.selected);
             },
             applyFilter() {
-                this.filter = filter
-                console.log("uhul")
+                console.log("foi")
             }
         },
 		mounted() {

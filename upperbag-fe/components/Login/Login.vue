@@ -135,6 +135,9 @@
 		mounted() {
 			this.loaded = true;
 		},
+        beforeMount() {
+            this.loaded = false;
+        },
 	};
 </script>
 
