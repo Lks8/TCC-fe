@@ -134,6 +134,7 @@
         font-size: 13px;
         justify-content: center;
         align-items: center;
+        background-color: #cc6031;
     }
     .filter-title {
         margin: 0;
