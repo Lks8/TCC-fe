@@ -5,15 +5,14 @@
 			striped
 			hover
 			borderless
-            selectable
-			:items="items"
+			selectable
+			:items="sortedTable"
 			:fields="fields"
 			:busy="isBusy"
-            :filter="filter"
-            select-mode="single"
-            @row-selected="onRowSelected"
+			:filter="filter"
+			select-mode="single"
+			@row-selected="onRowSelected"
 		>
-
 			<template #table-busy>
 				<div class="text-center my-2">
 					<b-spinner class="align-middle"></b-spinner>
@@ -40,26 +39,40 @@
 		data() {
 			return {
 				fields: [
-					{ key: "actions", label: "Selecionar usuário", class: "actions" },
+					{
+						key: "actions",
+						label: "Selecionar usuário",
+						class: "actions",
+					},
 					{ key: "name", label: "Nome" },
 					{ key: "email", label: "Email" },
 					{ key: "isAdmin", label: "Administrador", class: "admins" },
 				],
-                items: [],
+				items: [],
 				selected: [],
 				isBusy: true,
-                filter: this.$attrs.filter,
+				filter: this.$attrs.filter,
 			};
 		},
-        methods: {
-            onRowSelected(items) {
-                this.selected = items
-                this.$emit("selectedUser",this.selected);
-            },
-            applyFilter() {
-                console.log("foi")
-            }
-        },
+		computed: {
+			sortedTable: function() {
+				function compare(a, b) {
+					if (a.name < b.name) return -1;
+					if (a.name > b.name) return 1;
+					return 0;
+				}
+				return this.items.sort(compare);
+			},
+			applyFilter() {
+				if (this.$attrs.filter.length > 0) this.applyFilter();
+			},
+		},
+		methods: {
+			onRowSelected(items) {
+				this.selected = items;
+				this.$emit("selectedUser", this.selected);
+			},
+		},
 		mounted() {
 			this.$axios.setToken(localStorage.getItem("authToken"), "Bearer");
 			this.$axios
@@ -92,21 +105,21 @@
 		background-color: #d2d3d4;
 		border: 1px solid black;
 	}
-    .table.b-table > tbody > .table-active {
-        color: white;
-        background-color: #d77f59;
-    }
-    .table.b-table.table-hover > tbody > tr.table-active:hover td {
-        color: white;
-    }
-    .table-hover tbody tr:hover {
-        background-color:rgba(0, 0, 0, 0.1);
-        transition: 0.3s;
-    }
-    .actions {
-        max-width: 13%;
-    }
-    .admins {
-        max-width: 15%;
-    }
+	.table.b-table > tbody > .table-active {
+		color: white;
+		background-color: #d77f59;
+	}
+	.table.b-table.table-hover > tbody > tr.table-active:hover td {
+		color: white;
+	}
+	.table-hover tbody tr:hover {
+		background-color: rgba(0, 0, 0, 0.1);
+		transition: 0.3s;
+	}
+	.actions {
+		max-width: 13%;
+	}
+	.admins {
+		max-width: 15%;
+	}
 </style>

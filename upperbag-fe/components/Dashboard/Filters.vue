@@ -5,12 +5,13 @@
 				<h4 class="text-preset">Predefinições:</h4>
 				<b-form-select
 					class="presets"
-					v-model="presets[0].name"
+					v-model="selected"
 					:options="presets"
-					block
-					split
 				/>
-				<b-button variant="danger" class="erase-preset"
+				<b-button
+					variant="danger"
+					class="erase-preset"
+					@click="deletePreset(selected)"
 					><fa icon="minus-circle"
 				/></b-button>
 				<b-button variant="success" class="apply-preset"
@@ -21,19 +22,20 @@
 				<span class="organize-search">
 					<h4 class="text-parameters">Parâmetros:</h4>
 					<b-input-group class="search-filter">
-						<b-input placeholder="Digite o filtro desejado"
-                        v-model="search" />
+						<b-input
+							placeholder="Digite o filtro desejado"
+							v-model="search"
+							:state="typingError"
+						/>
 						<b-input-group-append>
 							<b-button
-								><fa
-									icon="search"
-									style="transform: scaleX(-1)"
+								class="add-preset"
+								variant="success"
+								@click="addFilter"
+								><fa icon="plus"
 							/></b-button>
 						</b-input-group-append>
 					</b-input-group>
-					<b-button class="apply-preset" variant="success"
-						><fa icon="plus"
-					/></b-button>
 				</span>
 				<span class="organize-selected">
 					<b-badge
@@ -42,9 +44,29 @@
 						variant="info"
 						v-for="filter in filters"
 						:key="filter"
-						>{{ filter }}<b-button-close class="close" @click="removeFilter"
+						>{{ filter
+						}}<b-button-close
+							class="close"
+							@click="removeFilter(filter)"
 					/></b-badge>
 				</span>
+			</span>
+			<span class="organize-create" v-if="filters.length">
+				<h4>Salvar predefinição:</h4>
+				<b-input-group class="create-preset">
+					<b-input
+						placeholder="Nome da predefinição"
+						v-model="presetName"
+						:state="missingText"
+					/>
+					<b-input-group-append>
+						<b-button
+							class="button-new-preset"
+							@click="createNewPreset"
+							><fa icon="plus"
+						/></b-button>
+					</b-input-group-append>
+				</b-input-group>
 			</span>
 			<span class="organize-periodo">
 				<h4>Período:</h4>
@@ -76,16 +98,6 @@
 					hide-header
 					hide-footer
 				/>
-			</span>
-			<span class="organize-create" v-if="filters">
-				<b-input-group class="create-preset">
-					<b-input placeholder="Nome da predefinição" />
-					<b-input-group-append>
-						<b-button class="button-new-preset"
-							><fa icon="plus"
-						/></b-button>
-					</b-input-group-append>
-				</b-input-group>
 				<b-button class="button-new-forecast" variant="info"
 					>Criar forecast</b-button
 				>
@@ -100,29 +112,60 @@
 			return {
 				startDate: "",
 				endDate: "",
-                search: "",
+				search: "",
+				typingError: null,
+				missingText: null,
+				selected: null,
+				presetName: "",
 				presets: [
-                    {
-                        name: "Camiseta Gola V Branca",
-						filters: ["Camiseta", "Gola V", "Cor branco"],
+					{
+						disabled: true,
+						text: "Selecione uma opção",
+						value: null,
 					},
-                    {
-                        name: "Camiseta Gola V Branca",
-						filters: ["Camiseta", "Gola V", "Cor branco"],
+					{
+						text: "Camiseta Gola V Branca",
+						value: [ 0, ["Camiseta", "Gola V", "Cor branco"]],
+					},
+					{
+						text: "Camiseta Gola V Branca",
+						value: [ 1, ["Camiseta", "Gola V", "Cor branco"]],
 					},
 				],
-                selected: "Escolha uma predefinição",
-				filters: ["Comedor de casadas","Mamador de machos"],
+				filters: [
+					"Comedor de casadas",
+					"Mamador de machos",
+					"chupa buceta",
+					"mama aqui",
+				],
 			};
 		},
-        methods: {
-            removeFilter() {
-                this.filters.splice(this.filters.indexOf(this.filters), 1);
-            },
-            addFilter() {
-                
-            }
-        }
+		methods: {
+			removeFilter(filter) {
+				this.filters.splice(this.filters.indexOf(filter), 1);
+			},
+			addFilter() {
+				if (this.search.length == 0) {
+					this.typingError = false;
+					return;
+				}
+				this.filters.push(this.search);
+				this.search = "";
+				this.typingError = null;
+			},
+			createNewPreset() {
+				if (this.presetName == "") {
+					this.missingText = false;
+					return;
+				}
+				this.presets.push({
+					text: this.presetName,
+					value: [this.presets.length ,this.filters],
+				});
+				this.filters = [];
+				this.presetName = "";
+			},
+		},
 	};
 </script>
 
@@ -165,7 +208,7 @@
 		background-color: rgb(53, 57, 59);
 	}
 	.organize-periodo {
-		padding: 20px 15px 10px 30px;
+		padding: 20px 25px 10px 30px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -236,7 +279,23 @@
 		margin: 0px 14px 0px 20px;
 		padding: 5px;
 	}
-
+	.add-preset,
+	.button-new-preset {
+		margin-right: 10px;
+		background-color: #6c757d;
+		border: none;
+		padding-inline: 14px;
+	}
+	.add-preset:hover,
+	.add-preset:focus,
+	.button-new-preset:focus,
+	.button-new-preset:hover {
+		background-color: #5a6268;
+	}
+	.add-preset:not(:disabled):not(.disabled):active,
+	.button-new-preset:not(:disabled):not(.disabled):active {
+		background-color: #545b62;
+	}
 	.organize-selected > .badges {
 		margin-block: 5px;
 	}
@@ -251,11 +310,10 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		margin-right: 20px;
-		margin-top: 10px;
+		margin: 10px 10px 0px 30px;
 	}
 	.create-preset {
-		margin-left: 30px;
+		max-width: 65%;
 	}
 	.button-new-preset {
 		width: min-content;
@@ -271,12 +329,19 @@
 		background-color: #d77f59;
 		border: none;
 	}
+	.apply-preset {
+		background-color: #d77f59;
+		border: none;
+	}
 	.button-new-forecast:hover,
-	.button-new-forecast:focus {
+	.button-new-forecast:focus,
+	.apply-preset:hover,
+	.apply-preset:focus {
 		background-color: #cc6031;
 	}
 	.button-new-forecast:not(:disabled):not(.disabled):active,
-	.btn-info:not(:disabled):not(.disabled):active:focus {
+	.btn-info:not(:disabled):not(.disabled):active:focus,
+	.apply-preset:not(:disabled):not(.disabled):active:focus {
 		background-color: #c24914;
 		box-shadow: 0 0 0 0.2rem#838486;
 	}
