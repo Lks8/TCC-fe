@@ -8,9 +8,13 @@
 				type="email"
 				placeholder="Insira seu e-mail"
 				v-model="message"
-                @keyup.enter="recoverSent()"
+				@keyup.enter="recoverSent()"
 			></b-input>
-            <Alert v-if="hasError" alertType="fail" alertMessage="Digite um e-mail válido" />
+			<Alert
+				v-if="hasError"
+				alertType="fail"
+				alertMessage="Digite um e-mail válido"
+			/>
 			<b-button class="button-password" @click="recoverSent">
 				Enviar e-mail
 				<span class="arrow"><fa icon="arrow-right"/></span>
@@ -24,7 +28,7 @@
 		data() {
 			return {
 				message: "",
-                hasError: false,
+				hasError: false,
 			};
 		},
 		methods: {
@@ -32,18 +36,21 @@
 				this.$emit("closeModal");
 			},
 			async recoverSent() {
-                const mandatoryCharacter = '@';
-				if (this.message !== "" && this.message.includes(mandatoryCharacter)) {
-                    this.$emit("recoverSent", this.message);
+				const mandatoryCharacter = "@";
+				if (
+					this.message !== "" &&
+					this.message.includes(mandatoryCharacter)
+				) {
+					this.$emit("recoverSent", this.message);
 				} else {
-                    this.hasError = true;
-                }
-                await this.$axios
+					this.hasError = true;
+				}
+				await this.$axios
 					.$post(
 						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/ResetPassword?email=${this.message}`
 					)
 					.then((response) => {
-                        console.log("respondeu:",response)
+						console.log("respondeu:", response);
 						this.hasError = false;
 						this.$emit("clicked");
 					})
@@ -51,7 +58,6 @@
 						console.log("cai aqui", error);
 						this.hasError = true;
 					});
-				this.loaded = true;
 			},
 		},
 	};
@@ -77,7 +83,7 @@
 		align-self: center;
 		width: 93%;
 		margin: 0 auto;
-        margin-bottom: 5px;
+		margin-bottom: 5px;
 		border-color: rgb(118, 118, 118);
 		border-radius: 2px;
 		outline: none;

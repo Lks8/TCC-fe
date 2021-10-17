@@ -1,9 +1,13 @@
 <template>
 	<div class="html">
-		<div class="login" v-if="!isLogged">
+        <div class="text-center my-2" style="color:white; padding-top: 90px" v-if="!loaded">
+			<b-spinner class="align-middle"></b-spinner>
+			<strong>Carregando...</strong>
+		</div>
+		<div class="login" v-if="!isLogged && loaded">
 			<Login @clicked="logIn" />
 		</div>
-		<div class="main-program" v-else>
+		<div class="main-program" v-if="isLogged && loaded">
 			<Bars />
 			<Dashboard />
 		</div>
@@ -19,8 +23,12 @@
 		data() {
 			return {
 				isLogged: false,
+                loaded: false,
 			};
 		},
+        beforeMount() {
+            this.loaded = false;
+        },
 		mounted() {
             this.$axios.setToken(localStorage.getItem("authToken"), "Bearer");
 			this.$axios
@@ -35,6 +43,7 @@
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
 			}
+            this.loaded = true;
 		},
 		components: {
 			Login,

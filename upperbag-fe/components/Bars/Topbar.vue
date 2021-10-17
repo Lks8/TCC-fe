@@ -23,7 +23,7 @@
 						alt="userpic"
 					/>
 				</template>
-				<b-dropdown-item @click="logout">
+				<b-dropdown-item class="logout" @click="logout">
                     Sair
                     <fa class="icon" icon="sign-out-alt" />
                 </b-dropdown-item>
@@ -130,11 +130,12 @@
         min-width: auto;
 	}
 
-	.dropdown-menu.show {
+	.user > .dropdown-menu.show {
+        position: fixed !important;
 		border-radius: 0;
 		background-color: rgb(53, 57, 59);
-		top: 3px !important;
-		left: 30% !important;
+		top: 10px !important;
+        left: 86% !important;
 		padding: 0;
 		font-family: "Rubik";
 		font-size: 18px;

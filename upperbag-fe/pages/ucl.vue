@@ -91,7 +91,7 @@
 				loaded: false,
 			};
 		},
-        beforeMount() {
+        beforeCreate() {
             this.loaded = false;
         },
 		mounted() {

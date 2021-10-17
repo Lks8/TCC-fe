@@ -82,6 +82,7 @@
 					}"
 					locale="pt"
 					hide-header
+                    :dark="true"
 				/>
 				<h4>-</h4>
 				<b-form-datepicker
@@ -96,7 +97,7 @@
 					}"
 					locale="pt"
 					hide-header
-					hide-footer
+                    :dark="true"
 				/>
 				<b-button class="button-new-forecast" variant="info"
 					>Criar forecast</b-button

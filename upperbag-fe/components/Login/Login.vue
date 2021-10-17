@@ -118,7 +118,7 @@
 				this.message = message;
 				this.closeModal();
 				alert(
-					"Um e-mail de redefinição de senha foi enviado para " +
+					"Um e-mail contendo uma senha temporária foi enviado para " +
 						this.message
 				);
 				this.loginError = false;
@@ -128,14 +128,13 @@
 					localStorage.setItem("authToken", token);
 					localStorage.setItem("userName", user.name);
 					localStorage.setItem("userEmail", user.email);
-					localStorage.setItem("userAdmin", user.isAdmin);
 				}
 			},
 		},
 		mounted() {
 			this.loaded = true;
 		},
-        beforeMount() {
+        beforeCreate() {
             this.loaded = false;
         },
 	};

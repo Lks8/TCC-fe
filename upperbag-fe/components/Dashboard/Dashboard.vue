@@ -4,7 +4,7 @@
 			<b-container class="graph-main">
 				<Graph @getValues="getValues" />
 			</b-container>
-            <hr style="border-color: #212529; border-width: 7px">
+			<hr style="border-color: #212529; border-width: 7px" />
 			<b-row>
 				<b-col class="filters-main">
 					<Filters />
@@ -22,29 +22,32 @@
 	import Graph from "./Graph.vue";
 	import TableDashboard from "./TableDashboard.vue";
 	export default {
-        data() {
-            return {
-                items: [],
-            }
-        },
+		transitions: {
+			mode: "slide-left",
+		},
+		data() {
+			return {
+				items: [],
+			};
+		},
 		components: { Filters, Graph, TableDashboard },
-        methods: {
-            getValues(sales) {
-                this.items = [Graph.props.months.type,sales];
+		methods: {
+			getValues(sales) {
+				this.items = [Graph.props.months.type, sales];
 			},
-        }
+		},
 	};
 </script>
 
 <style>
 	.body-dashboard {
-        z-index: -2;
-        min-height: 91.5vh;
+		z-index: -2;
+		min-height: 91.5vh;
 		width: 72%;
 		margin: 0 auto;
 		height: 100%;
-        display: block;
-        justify-content: center;
+		display: block;
+		justify-content: center;
 	}
 
 	.graph-main {
@@ -53,17 +56,18 @@
 		text-align: center;
 		align-items: center;
 		justify-content: center;
-        width: 72%;
+		width: 72%;
 	}
 
 	.table-main {
-        text-align: center;
-        border-width: 5px solid #d2d3d4;
+		text-align: center;
+		border-width: 5px solid #d2d3d4;
 	}
 
 	.filters-main {
 		text-align: center;
 		align-items: center;
 		justify-content: center;
+		transition: width 2s;
 	}
 </style>
