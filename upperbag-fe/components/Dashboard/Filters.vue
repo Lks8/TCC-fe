@@ -2,21 +2,21 @@
 	<div class="core-filters">
 		<div class="main-filters">
 			<span class="organize-presets">
-				<h4 class="text-preset">Predefinições:</h4>
+				<h4 class="text-preset">Modelo:</h4>
 				<b-form-select
 					class="presets"
 					v-model="selected"
 					:options="presets"
 				/>
-				<b-button
+				<!-- <b-button
 					variant="danger"
 					class="erase-preset"
 					@click="deletePreset(selected)"
 					><fa icon="minus-circle"
-				/></b-button>
-				<b-button variant="success" class="apply-preset"
+				/></b-button> -->
+				<!-- <b-button variant="success" class="apply-preset"
 					><fa icon="check"
-				/></b-button>
+				/></b-button> -->
 			</span>
 			<span class="organize-filters">
 				<span class="organize-search">
@@ -51,7 +51,7 @@
 					/></b-badge>
 				</span>
 			</span>
-			<span class="organize-create" v-if="filters.length">
+			<!-- <span class="organize-create" v-if="filters.length">
 				<h4>Salvar predefinição:</h4>
 				<b-input-group class="create-preset">
 					<b-input
@@ -67,12 +67,13 @@
 						/></b-button>
 					</b-input-group-append>
 				</b-input-group>
-			</span>
+			</span> -->
 			<span class="organize-periodo">
 				<h4>Período:</h4>
 				<b-form-datepicker
 					class="periodo-inicial"
 					placeholder="Data inicial"
+                    :min="'2020-01-01'"
 					:max="endDate"
 					v-model="startDate"
 					:date-format-options="{
@@ -89,6 +90,7 @@
 					class="periodo-final"
 					placeholder="Data final"
 					:min="startDate"
+                    :max="'2022-12-31'"
 					v-model="endDate"
 					:date-format-options="{
 						year: 'numeric',
@@ -125,11 +127,11 @@
 						value: null,
 					},
 					{
-						text: "Camiseta Gola V Branca",
+						text: "LSTM",
 						value: [ 0, ["Camiseta", "Gola V", "Cor branco"]],
 					},
 					{
-						text: "Camiseta Gola V Branca",
+						text: "XGBoost Regressor",
 						value: [ 1, ["Camiseta", "Gola V", "Cor branco"]],
 					},
 				],
@@ -179,18 +181,14 @@
 		display: none;
 	}
 	.organize-presets {
-		padding: 10px 10px 15px 10px;
+		padding: 10px 5px 15px 15px;
 		display: flex;
-		justify-content: flex-start;
+		justify-content: center;
 		align-items: center;
 		margin-inline: 15px;
 	}
-	.text-preset {
-		width: 50%;
-	}
 	.presets {
-		margin-inline: 5px;
-		width: 100%;
+		margin-inline: 10px;
 		display: -webkit-box;
 		color: #16181b;
 		background-color: #d2d3d4;
@@ -252,7 +250,7 @@
 	}
 	.organize-search {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 		align-items: center;
 		padding-block: 10px;
 		margin-left: 20px;
