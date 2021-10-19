@@ -3,7 +3,7 @@
         <br>
         <h4>Você não possui autorização para ver esta página</h4>
         <br>
-        <h4>Como caralhos você encontrou esse link? Não está disponível em lugar algum!</h4>
+        <h4>Como você encontrou esse link? Não está disponível em lugar algum!</h4>
         <br>
         <h4>Enquanto demito quem lhe forneceu esta URL, você pode:</h4>
         <br>
