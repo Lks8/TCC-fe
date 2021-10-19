@@ -2,7 +2,7 @@
 	<div>
 		<header class="topbar"><Topbar /></header>
 		<div class="sidebar">
-			<Sidebar v-if="this.userAdmin!=0" />
+			<Sidebar v-if="this.userAdmin != 0" />
 		</div>
 	</div>
 </template>
@@ -18,9 +18,18 @@
 				userAdmin: 0,
 			};
 		},
-        mounted() {
-            this.userAdmin = localStorage.getItem("userAdmin");
-        }
+		mounted() {
+			this.$axios
+				.$get(
+					`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/`
+				)
+				.then((res) => {
+					this.userAdmin = res.filter(function(elem) {
+						if (elem.name == localStorage.getItem("userName"))
+							return elem;
+					})[0].isAdmin;
+				});
+		},
 	};
 </script>
 
