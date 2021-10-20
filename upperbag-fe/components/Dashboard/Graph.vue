@@ -1,21 +1,23 @@
 <template>
 	<div id="app">
         <span class="badge-tier">
-            <p class="filter-title">Filtros utilizados:</p>
-            <b-badge class="badges" variant="info" pill v-for="filter in filters" :key="filter">
+            <!-- <p class="filter-title">Filtros utilizados:</p> -->
+            <p class="filter-title">Modelo utilizado:</p>
+            <!-- <b-badge class="badges" variant="info" pill v-for="filter in filters" :key="filter">
                 {{filter}}
+            </b-badge> -->
+             <b-badge class="badges" variant="info" pill>
+                {{ modelo[1].text }}
             </b-badge>
         </span>
 		<line-chart
 			class="line-chart"
-			:width="1300"
+            :width="1300"			
 			:chart-data="purpleLineChart.chartData"
 			:gradient-colors="purpleLineChart.gradientColors"
 			:gradient-stops="purpleLineChart.gradientStops"
 			:extra-options="purpleLineChart.extraOptions"
-		>
-		</line-chart>
-        
+		/>
 	</div>
 </template>
 
@@ -61,6 +63,7 @@
 		data() {
 			return {
                 filters: ["Camiseta","Cor: Branco","Tamanho: M","Gola V"],
+                modelo: [{text: "LTSM", value: 1}, {text: "XGBoost Regressor", value: 0}],
 				purpleLineChart: {
 					extraOptions: chartConfigs.purpleChartOptions,
 					chartData: {

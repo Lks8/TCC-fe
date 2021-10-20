@@ -1,25 +1,34 @@
 <template>
 	<div class="core-filters">
 		<div class="main-filters">
-			<span class="organize-presets">
-				<h4 class="text-preset">Modelo:</h4>
+			<!-- <span class="organize-presets">
+				 <h4 class="text-preset">Produto:</h4>
 				<b-form-select
 					class="presets"
 					v-model="selected"
-					:options="presets"
-				/>
-				<!-- <b-button
+					:options="products"
+				/> 
+				< <b-button
 					variant="danger"
 					class="erase-preset"
 					@click="deletePreset(selected)"
 					><fa icon="minus-circle"
-				/></b-button> -->
-				<!-- <b-button variant="success" class="apply-preset"
+				/></b-button> 
+				< <b-button variant="success" class="apply-preset"
 					><fa icon="check"
-				/></b-button> -->
-			</span>
+				/></b-button> 
+			</span> -->
 			<span class="organize-filters">
-				<span class="organize-search">
+				<h4 class="text-preset">Selecione o modelo:</h4>
+				<b-form-radio-group
+					id="radio-slots"
+					v-model="selected"
+					:options="presets"
+					:aria-describedby="ariaDescribedby"
+					name="radio-options-slots"
+				/>
+
+				<!-- <span class="organize-search">
 					<h4 class="text-parameters">Parâmetros:</h4>
 					<b-input-group class="search-filter">
 						<b-input
@@ -36,8 +45,8 @@
 							/></b-button>
 						</b-input-group-append>
 					</b-input-group>
-				</span>
-				<span class="organize-selected">
+				</span> -->
+				<!-- <span class="organize-selected">
 					<b-badge
 						class="badges"
 						pill
@@ -49,7 +58,7 @@
 							class="close"
 							@click="removeFilter(filter)"
 					/></b-badge>
-				</span>
+				</span> -->
 			</span>
 			<!-- <span class="organize-create" v-if="filters.length">
 				<h4>Salvar predefinição:</h4>
@@ -69,7 +78,7 @@
 				</b-input-group>
 			</span> -->
 			<span class="organize-periodo">
-				<h4>Período:</h4>
+				<!-- <h4>Período:</h4>
 				<b-form-datepicker
 					class="periodo-inicial"
 					placeholder="Data inicial"
@@ -100,9 +109,9 @@
 					locale="pt"
 					hide-header
                     :dark="true"
-				/>
+				/> -->
 				<b-button class="button-new-forecast" variant="info"
-					>Criar forecast</b-button
+					>Criar Forecast</b-button
 				>
 			</span>
 		</div>
@@ -120,19 +129,26 @@
 				missingText: null,
 				selected: null,
 				presetName: "",
+				products: [
+					{ value: null, text: "Selecione uma opção", disabled: true },
+					"Blusa Gola V",
+					"Camisa Manga Longa",
+					"Calça Flare",
+					"Cueca Boxer",
+				],
 				presets: [
-					{
-						disabled: true,
-						text: "Selecione uma opção",
-						value: null,
-					},
+					// {
+					// 	disabled: true,
+					// 	text: "Selecione uma opção",
+					// 	value: null,
+					// },
 					{
 						text: "LSTM",
-						value: [ 0, ["Camiseta", "Gola V", "Cor branco"]],
+						value: [0, ["Camiseta", "Gola V", "Cor branco"]],
 					},
 					{
 						text: "XGBoost Regressor",
-						value: [ 1, ["Camiseta", "Gola V", "Cor branco"]],
+						value: [1, ["Camiseta", "Gola V", "Cor branco"]],
 					},
 				],
 				filters: [
@@ -163,7 +179,7 @@
 				}
 				this.presets.push({
 					text: this.presetName,
-					value: [this.presets.length ,this.filters],
+					value: [this.presets.length, this.filters],
 				});
 				this.filters = [];
 				this.presetName = "";
@@ -176,12 +192,18 @@
 	@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 	.main-filters {
 		color: #d2d3d4;
+        background-color: #252829;
+        border: transparent 1px;
+        border-radius: 10px;
+        padding-block: 15px;
+        margin: 15px 20px 15px 20px;
+        height: 100%;
 	}
 	.small {
 		display: none;
 	}
 	.organize-presets {
-		padding: 10px 5px 15px 15px;
+		padding: 10px 15px 15px 30px;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -193,6 +215,7 @@
 		color: #16181b;
 		background-color: #d2d3d4;
 		font-family: "Rubik", "sans-serif";
+        width: 40%;
 	}
 	.presets:hover {
 		color: #e9ecef;
@@ -210,7 +233,7 @@
 		padding: 20px 25px 10px 30px;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
+		justify-content: center;
 	}
 	.b-form-btn-label-control.form-control {
 		width: 100%;
@@ -320,11 +343,12 @@
 		margin-right: 20px;
 	}
 	.button-new-forecast {
-		padding: 2px 20px 2px 20px;
-		margin-inline: 5px;
-		width: min-content;
+		margin-inline: 10px;
+        display: flex;
 		font-weight: bold;
+        width: 60%;
 		font-size: 20px;
+        justify-content: center;
 		background-color: #d77f59;
 		border: none;
 	}
@@ -344,4 +368,14 @@
 		background-color: #c24914;
 		box-shadow: 0 0 0 0.2rem#838486;
 	}
+	.organize-filters {
+		display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+	}
+    .text-preset {
+        font-size: 30px;
+        font-family: "Rubik";
+    }
 </style>

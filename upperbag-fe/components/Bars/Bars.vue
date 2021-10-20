@@ -25,8 +25,9 @@
 				)
 				.then((res) => {
 					this.userAdmin = res.filter(function(elem) {
-						if (elem.name == localStorage.getItem("userName"))
-							return elem;
+						return elem.name == localStorage.getItem("userName")
+							? elem.name
+							: 0;
 					})[0].isAdmin;
 				});
 		},

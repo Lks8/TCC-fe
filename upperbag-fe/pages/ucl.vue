@@ -106,14 +106,14 @@
 					`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/`
 				)
 				.then((res) => {
-					if (
-						!res.filter(function(elem) {
-							if (elem.name == localStorage.getItem("userName"))
-								return elem;
-						})[0].isAdmin
-					)
-						this.$router.push("/unauthorized");
+					this.userAdmin = res.filter(function(elem) {
+						return elem.name == localStorage.getItem("userName")
+							? elem.name
+							: 0;
+					})[0].isAdmin;
+					this.$router.push("/unauthorized");
 				});
+
 			if (localStorage.getItem("userName")) {
 				this.isLogged = true;
 				this.loggedUser = localStorage.getItem("userName");

@@ -98,9 +98,10 @@
 						this.loginError = false;
 						this.storeData(this.token, this.user);
 						this.$emit("clicked");
+						this.$router.go(0);
 					})
 					.catch((error) => {
-                        console.clear();
+						console.clear();
 						console.log("cai aqui", error);
 						this.loginError = true;
 					});
@@ -134,9 +135,9 @@
 		mounted() {
 			this.loaded = true;
 		},
-        beforeCreate() {
-            this.loaded = false;
-        },
+		beforeCreate() {
+			this.loaded = false;
+		},
 	};
 </script>
 
@@ -152,7 +153,7 @@
 	.core {
 		text-align: center;
 	}
-    
+
 	.core.active {
 		pointer-events: none;
 	}
