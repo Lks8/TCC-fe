@@ -79,7 +79,13 @@
 		width: 100%;
 	}
 
-	.html {
-		min-height: 100vh;
+	html, body {
+		height: 100vh;
+		width: 100vw;
+		margin: 0;
+	}
+
+	.body-dashboard{
+		background-color: transparent !important;
 	}
 </style>

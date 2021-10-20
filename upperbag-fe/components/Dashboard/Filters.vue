@@ -1,6 +1,6 @@
 <template>
-	<div class="core-filters">
-		<div class="main-filters">
+	<div class="core-filters p-3">
+		<div class="main-filters ">
 			<!-- <span class="organize-presets">
 				 <h4 class="text-preset">Produto:</h4>
 				<b-form-select
@@ -196,18 +196,9 @@
         border: transparent 1px;
         border-radius: 10px;
         padding-block: 15px;
-        margin: 15px 20px 15px 20px;
-        height: 100%;
 	}
 	.small {
 		display: none;
-	}
-	.organize-presets {
-		padding: 10px 15px 15px 30px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		margin-inline: 15px;
 	}
 	.presets {
 		margin-inline: 10px;
@@ -215,7 +206,6 @@
 		color: #16181b;
 		background-color: #d2d3d4;
 		font-family: "Rubik", "sans-serif";
-        width: 40%;
 	}
 	.presets:hover {
 		color: #e9ecef;
@@ -236,7 +226,6 @@
 		justify-content: center;
 	}
 	.b-form-btn-label-control.form-control {
-		width: 100%;
 		margin-inline: 10px;
 		background-color: #d2d3d4;
 		font-family: "Rubik", "sans-serif";
