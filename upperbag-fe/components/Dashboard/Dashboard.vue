@@ -50,15 +50,6 @@
 		justify-content: center;
 	}
 
-	.graph-main {
-		display: flex;
-		height: 500px;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
-		width: 72%;
-	}
-
 	.table-main {
 		text-align: center;
 		border-width: 5px solid #d2d3d4;

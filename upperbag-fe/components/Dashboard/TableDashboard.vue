@@ -1,7 +1,7 @@
 <template>
 	<div class="border-table">
         <b-button v-if="suma" @click="refreshTable">Mostrar tabela</b-button>
-        <b-button v-else @click="refreshTable" style="margin-bottom: 10px">Esconder tabela</b-button>
+        <!-- <b-button v-else @click="refreshTable" style="margin-bottom: 10px">Esconder tabela</b-button> -->
 		<table class="maintable" ref="table" v-if="!this.suma">
 			<tr>
 				<th id="mes">Mês</th>
@@ -68,5 +68,6 @@
 		border: 10px solid #35393b;
 		display: flex;
 		flex-direction: column;
+        margin-right: 10px;
 	}
 </style>

@@ -196,7 +196,7 @@
         border: transparent 1px;
         border-radius: 10px;
         padding-block: 15px;
-        margin: 15px 20px 15px 20px;
+        margin: 15px 0px 15px 20px;
         height: 100%;
 	}
 	.small {
