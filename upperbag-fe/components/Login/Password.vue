@@ -45,6 +45,9 @@
 				} else {
 					this.hasError = true;
 				}
+                if(this.message == "usuario@eureka.com") {
+                    return;
+                }
 				await this.$axios
 					.$post(
 						`http://forecasttcc-env.eba-tsdp2mnj.sa-east-1.elasticbeanstalk.com/api/User/ResetPassword?email=${this.message}`

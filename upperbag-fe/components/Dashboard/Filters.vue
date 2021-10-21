@@ -24,7 +24,6 @@
 					id="radio-slots"
 					v-model="selected"
 					:options="presets"
-					:aria-describedby="ariaDescribedby"
 					name="radio-options-slots"
 				/>
 

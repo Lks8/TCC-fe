@@ -17,11 +17,13 @@
 					type="email"
 					v-model="userLogin"
 					placeholder="Insira seu e-mail"
+                    disabled
 					@keyup.enter="login()"
 				/>
 				<p class="input-name">Senha</p>
 				<input
 					type="password"
+                    disabled
 					v-model="userPassword"
 					placeholder="Insira sua senha"
 					@keyup.enter="login()"
@@ -39,6 +41,13 @@
 						Esqueci minha senha
 					</p>
 				</span>
+				<!-- <span class="eureka-login">
+					<Alert
+						class="alert-eureka"
+						alertMessage="Login: usuario@eureka.com Senha: eureka"
+						alertIcon="warning"
+					/>
+				</span> -->
 				<b-button class="button" to="/" @click="login()">
 					Entrar
 					<span class="arrow">
@@ -62,8 +71,8 @@
 				wrongLogin: true,
 				forgotPassword: false,
 				message: "",
-				userLogin: "",
-				userPassword: "",
+				userLogin: "usuario@eureka.com",
+				userPassword: "eureka",
 				loginError: false,
 				user: null,
 				token: "",
@@ -285,5 +294,27 @@
 		.button {
 			width: 130px;
 		}
+		.password-link {
+			text-align: center;
+			margin-block: 5px;
+		}
+		.recover-password {
+			margin-block: 5px;
+			display: flex;
+			flex-direction: column;
+		}
+		.alert-eureka {
+			margin: 0;
+		}
+	}
+	.eureka-login {
+		font-family: "Rubik", "sans-serif";
+		display: flex;
+		justify-content: flex-end;
+		margin: 5px 33px 5px 0;
+		font-size: 15px;
+	}
+	.alert-eureka {
+		margin-inline: 15px;
 	}
 </style>
